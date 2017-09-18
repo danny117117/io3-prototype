@@ -16,11 +16,11 @@ export class RegisterPage extends basePage {
   products: Codes[] = [];
   registerInfo: RegisterInfo = new RegisterInfo();
   constructor(public navCtrl: NavController,private api: DataServiceProvider, public navParams: NavParams, private datePicker: DatePicker) {
-    super();    
-    let  p = new Codes();
-    p.Code = '000';
-    p.Eng_Full = "Rony Rizk";
-    this.products.push(p);
+    super();       
+    this.GetSignup();
+  }
+
+  GetSignup(){
     let param = new Params_GetSignup();
     this.api.GetSignup(param).subscribe((data)=> {
       this.products = data.filter(x=> x.Tbl_Name == '_WebProducts');      
