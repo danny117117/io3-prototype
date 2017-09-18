@@ -25,7 +25,8 @@ export class HomePage extends basePage {
   }
   Authenticate() {
     this.Processing = true;
-    this.api.Authenticate(this.data).subscribe((result) => {
+    this.api.Authenticate(this.data).subscribe(
+        (result) => {
       this.Processing = false;
       if (result.Is_Authentic){
         this.navCtrl.push(PortfolioPage);
