@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { CommonServiceProvider } from '../common-service/common-service';
-import { User, Params_Authenticate, SerializationHelper, Params_GetSignup, Codes, Polcom } from '../../models/models';
+import { User, Params_Authenticate, SerializationHelper, Params_GetSignup, Codes, Polcom, Params_Acquire_PNS_Token } from '../../models/models';
 
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
@@ -93,7 +93,20 @@ export class DataServiceProvider {
         return ret;
       })
       .catch(this.handleErrorPromise);
+  }
 
+
+  Acquire_PNS_Token(Params: Params_Acquire_PNS_Token): Observable<boolean> {
+    this.url = this.common.APIBaseURL + '/Acquire_PNS_Token'
+    const headers = new Headers({ 'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID });
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.url, JSON.stringify(Params), options)
+      .map((res: Response) => {
+        let ret : boolean = true;
+        return ret;
+      })
+      .catch(this.handleErrorPromise);
   }
 
 }

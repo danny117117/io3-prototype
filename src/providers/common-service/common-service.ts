@@ -19,7 +19,6 @@ export class CommonServiceProvider {
   constructor(public http: Http, private push: Push) {
     this.PNS_Options = {
       android: {
-        
         senderID: '1002239621785'
       },
       ios: {
@@ -32,15 +31,28 @@ export class CommonServiceProvider {
         pushServiceURL: 'http://push.api.phonegap.com/v1/push'
       }
     };
+
+
   }
 
-  Register_PNS() {
+  Register_PNS(OnRegistration: (x: any) => void) {
 
     const pushObject: PushObject = this.push.init(this.PNS_Options);
 
-    pushObject.on('notification').subscribe((notification: any) => alert('Received a notification:' + notification));
+    pushObject.on('notification').subscribe((notification: any) => {
+      alert(notification);
+      //alert('Received a notification:' + JSON.stringify(notification)); 
+      OnRegistration(notification);
+    }
+    );
 
-    pushObject.on('registration').subscribe((registration: any) => alert('Device registered: ' + registration));
+    pushObject.on('registration').subscribe((registration: any) =>
+      {
+        //alert('Device registered: ' + registration)
+      //alert(JSON.stringify(registration));
+      OnRegistration(registration.registrationId); 
+      }
+    );
 
     pushObject.on('error').subscribe(error => alert('Error with Push plugin: ' + error));
   }
