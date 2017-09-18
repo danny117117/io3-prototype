@@ -1,0 +1,46 @@
+<ion-content class='background'>
+  <ion-card>
+    <ion-card-header>
+      Register
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list no-line>
+        <ion-item>
+          <ion-input type="text" placeholder="Web User ID" id='Txt_WEB_USER_ID' [(ngModel)]='registerInfo.WEB_USER_ID'></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label style='color:white;'>Product</ion-label>
+          <ion-select [(ngModel)]="registerInfo.PRODUCT_CODE">
+            <ion-option style='color:white;' *ngFor='let product of products' value='{{product.Code}}'>{{product.Eng_Full}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Policy #" id='Txt_POLICY_NBR' [(ngModel)]='registerInfo.POLICY_NBR'></ion-input>
+        </ion-item>
+        <ion-item (click)='selectExpiryDate()'>
+          <span style='color:white' *ngIf='registerInfo.EXPIRY_DATE == null'>Expiry Date</span>
+          <span style='color:white' *ngIf='registerInfo.EXPIRY_DATE != null'>{{registerInfo.EXPIRY_DATE}}</span>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" placeholder="PIN" id='Txt_PIN' [(ngModel)]='registerInfo.PIN'></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="email" placeholder="Email" id='Txt_EMAIL' [(ngModel)]='registerInfo.EMAIL'></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Mobile" id='Txt_MOBILE' [(ngModel)]='registerInfo.MOBILE'></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button block outline color='light' (click)='Register()'>Register</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block outline color='light' (click)='CancelHandler()'>Cancel</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Portfolio</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor='let policy of policies'>
+      <ion-thumbnail item-start>
+        <img src="assets/insurance.jpg">
+      </ion-thumbnail>
+      <h2>{{policy.ProductName}} - {{policy.PolicyNo}}</h2>
+      <p>{{policy.HolderName}}</p>
+      <button ion-button clear item-end>
+        <ion-icon ios="ios-build" md="md-build"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>
