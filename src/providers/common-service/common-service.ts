@@ -19,6 +19,7 @@ export class CommonServiceProvider {
   constructor(public http: Http, private push: Push) {
     this.PNS_Options = {
       android: {
+        
         senderID: '1002239621785'
       },
       ios: {
