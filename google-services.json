@@ -1,0 +1,43 @@
+{
+  "project_info": {
+    "project_number": "1002239621785",
+    "project_id": "ionic-gcm-180306"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002239621785:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002239621785-eet3537vpcteivq7ddha1ogao1bj1qjd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp8eKDfPnfJcjeN87vSU-QEgLjuyuErnE"
+        },
+        {
+          "current_key": "AIzaSyCC9voKlletOi8UJXBRStmCC8z7OHGxcow"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
