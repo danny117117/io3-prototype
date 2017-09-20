@@ -1,28 +1,27 @@
 <ion-content class='background'>
 
     <form [formGroup]="register" (ngSubmit)="onRegister()">
-    <ion-card>
-        <ion-card-header>
-            Register
-        </ion-card-header>
-                <ion-card-content>
+        <ion-card>
+            <ion-card-header>
+                Register
+            </ion-card-header>
+            <ion-card-content>
                 <ion-list no-line>
                     <ion-item [ngClass]="(registerInfo.WEB_USER_ID == '') ? 'class2' : ''">
 
-                        <ion-input required  type="text" placeholder="Web User ID" formControlName="WEB_USER_ID" id='Txt_WEB_USER_ID' [(ngModel)]='registerInfo.WEB_USER_ID'></ion-input>
-
-                        <!--ion-label style="color: red" *ngIf="!registerInfo.WEB_USER_ID">Required</ion-label-->
+                        <ion-input type="text" placeholder="Web User ID" formControlName="WEB_USER_ID"
+                                   id='Txt_WEB_USER_ID' [(ngModel)]='registerInfo.WEB_USER_ID'></ion-input>
                     </ion-item>
                     <ion-item [ngClass]="(registerInfo.PRODUCT_CODE == '') ? 'class2' : ''">
                         <ion-label style='color:white;'>Product</ion-label>
-                        <ion-select [(ngModel)]="registerInfo.PRODUCT_CODE"    formControlName="PRODUCT_CODE">
+                        <ion-select [(ngModel)]="registerInfo.PRODUCT_CODE" formControlName="PRODUCT_CODE">
                             <ion-option style='color:white;' *ngFor='let product of products' value='{{product.Code}}'>
                                 {{product.Eng_Full}}
                             </ion-option>
                         </ion-select>
                     </ion-item>
                     <ion-item [ngClass]="(registerInfo.POLICY_NBR == '') ? 'class2' : ''">
-                        <ion-input type="text"    placeholder="Policy #" id='Txt_POLICY_NBR'
+                        <ion-input type="text" placeholder="Policy #" id='Txt_POLICY_NBR'
                                    [(ngModel)]='registerInfo.POLICY_NBR' formControlName="POLICY_NBR"></ion-input>
                     </ion-item>
                     <ion-item (click)='selectExpiryDate()'>
@@ -31,30 +30,37 @@
                               *ngIf='registerInfo.EXPIRY_DATE != null'>{{registerInfo.EXPIRY_DATE}}</span>
                     </ion-item>
                     <ion-item [ngClass]="(registerInfo.PIN == '') ? 'class2' : ''">
-                        <ion-input type="number"   placeholder="PIN" id='Txt_PIN'
+                        <ion-input type="number" placeholder="PIN"  id='Txt_PIN'
                                    [(ngModel)]='registerInfo.PIN' formControlName="PIN"></ion-input>
                     </ion-item>
+
+
                     <ion-item [ngClass]="(registerInfo.EMAIL == '') ? 'class2' : ''">
-                        <ion-input type="email"  placeholder="Email" id='Txt_EMAIL'
+                        <ion-input type="email" placeholder="Email" id='Txt_EMAIL'
                                    [(ngModel)]='registerInfo.EMAIL' formControlName="EMAIL"></ion-input>
                     </ion-item>
+
+
                     <ion-item [ngClass]="(registerInfo.MOBILE == '') ? 'class2' : ''">
-                        <ion-input type="text"  placeholder="Mobile" id='Txt_MOBILE'
+                        <ion-input type="text" placeholder="Mobile" id='Txt_MOBILE'
                                    [(ngModel)]='registerInfo.MOBILE' formControlName="MOBILE"></ion-input>
                     </ion-item>
+
+
                 </ion-list>
             </ion-card-content>
-    </ion-card>
-    <ion-grid>
-        <ion-row>
-            <ion-col col-6>
-                <button ion-button block outline color='light' type="submit" [disabled]="!register.valid">Register</button>
-            </ion-col>
-            <ion-col col-6>
-                <button ion-button block outline color='light' (click)='CancelHandler()'>Cancel</button>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+        </ion-card>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <button ion-button block outline color='light' type="submit" [disabled]="!register.valid">Register
+                    </button>
+                </ion-col>
+                <ion-col col-6>
+                    <button ion-button block outline color='light' (click)='CancelHandler()'>Cancel</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </form>
 
 </ion-content>

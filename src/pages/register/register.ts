@@ -16,22 +16,35 @@ export class RegisterPage extends basePage {
     register: FormGroup;
     products: Codes[] = [];
     registerInfo: RegisterInfo = new RegisterInfo();
+    isMobile = true;
+    isMail = true;
 
     constructor(public navCtrl: NavController, private api: DataServiceProvider, public formBuilder: FormBuilder, public navParams: NavParams, private datePicker: DatePicker) {
         super();
         this.GetSignup();
-
-
         this.register = this.formBuilder.group({
-            WEB_USER_ID: ['', Validators.required],
-            PRODUCT_CODE: ["", Validators.required],
-            POLICY_NBR: ["", Validators.required],
-            PIN: ["", Validators.required],
-            EMAIL: ["", Validators.required],
-            MOBILE: ["", Validators.required],
-
+            WEB_USER_ID: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(16)])],
+            PRODUCT_CODE: "",
+            POLICY_NBR: ["", Validators.compose([Validators.required, Validators.pattern('([a-zA-Z]{3,3})(\\/)([0-9]{6,14})')])],
+            PIN: "",
+            EMAIL: [],
+            MOBILE: []
         });
+        //Listen to email value and update validators of phoneNumber accordingly
+        this.register.get('EMAIL').valueChanges.subscribe(data => this.onEmailValueChanged(data));
+    }
 
+    onEmailValueChanged(value: any) {
+        let phoneNumberControl = this.register.get('MOBILE');
+        // Using setValidators to add and remove validators. No better support for adding and removing validators to controller atm.
+        // See issue: https://github.com/angular/angular/issues/10567
+        if (!value) {
+            phoneNumberControl.setValidators([Validators.required]);
+        } else {
+            phoneNumberControl.setValidators([Validators.minLength(0)]);
+        }
+
+        phoneNumberControl.updateValueAndValidity(); //Need to call this to trigger a update
     }
 
     GetSignup() {
@@ -40,7 +53,6 @@ export class RegisterPage extends basePage {
             this.products = data.filter(x => x.Tbl_Name == '_WebProducts');
         });
     }
-
 
     CancelHandler() {
         this.navCtrl.pop();
