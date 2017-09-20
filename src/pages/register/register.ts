@@ -7,7 +7,7 @@ import {basePage} from '../../models/basePage';
 import {DataServiceProvider} from '../../providers/data-service/data-service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
-
+//dok
 @Component({
     selector: 'page-register',
     templateUrl: 'register.html',
