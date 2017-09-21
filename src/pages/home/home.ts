@@ -23,6 +23,7 @@ export class HomePage extends basePage {
     this.api.DQNewSession().subscribe((data) => {this.common.SESSION_ID = data;})
 
   }
+
   Authenticate() {
     this.Processing = true;
     this.api.Authenticate(this.data).subscribe(

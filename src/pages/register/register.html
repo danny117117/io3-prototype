@@ -8,9 +8,10 @@
             <ion-card-content>
                 <ion-list no-line>
                     <ion-item [ngClass]="(registerInfo.WEB_USER_ID == '') ? 'class2' : ''">
-
                         <ion-input type="text" placeholder="Web User ID" formControlName="WEB_USER_ID"
                                    id='Txt_WEB_USER_ID' [(ngModel)]='registerInfo.WEB_USER_ID'></ion-input>
+
+
                     </ion-item>
                     <ion-item [ngClass]="(registerInfo.PRODUCT_CODE == '') ? 'class2' : ''">
                         <ion-label style='color:white;'>Product</ion-label>
@@ -30,23 +31,17 @@
                               *ngIf='registerInfo.EXPIRY_DATE != null'>{{registerInfo.EXPIRY_DATE}}</span>
                     </ion-item>
                     <ion-item [ngClass]="(registerInfo.PIN == '') ? 'class2' : ''">
-                        <ion-input type="number" placeholder="PIN"  id='Txt_PIN'
+                        <ion-input type="number" placeholder="PIN" id='Txt_PIN'
                                    [(ngModel)]='registerInfo.PIN' formControlName="PIN"></ion-input>
                     </ion-item>
-
-
                     <ion-item [ngClass]="(registerInfo.EMAIL == '') ? 'class2' : ''">
                         <ion-input type="email" placeholder="Email" id='Txt_EMAIL'
-                                   [(ngModel)]='registerInfo.EMAIL' formControlName="EMAIL"></ion-input>
+                                   [(ngModel)]='registerInfo.EMAIL' formControlName="EMAIL" ></ion-input>
                     </ion-item>
-
-
                     <ion-item [ngClass]="(registerInfo.MOBILE == '') ? 'class2' : ''">
                         <ion-input type="text" placeholder="Mobile" id='Txt_MOBILE'
                                    [(ngModel)]='registerInfo.MOBILE' formControlName="MOBILE"></ion-input>
                     </ion-item>
-
-
                 </ion-list>
             </ion-card-content>
         </ion-card>

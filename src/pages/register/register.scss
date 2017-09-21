@@ -1,9 +1,7 @@
 page-register {
   .background {
     background-image: url('../assets/bg.jpg')
-
   }
-
   .scroll-content {
     align-content: center;
     display: flex;
@@ -11,35 +9,29 @@ page-register {
     justify-content: center;
     text-align: center;
   }
-
   ion-card.card {
     box-shadow: none;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
   }
-
   a, p,
   ion-card-header.card-header {
     color: #fff;
   }
-
   .list > .item-block:first-child {
     border: medium none;
   }
-
   .item {
     margin-bottom: 10px;
     background: rgba(255, 255, 255, 0.5);
     border: medium none;
-
+    padding: 0px !important;
     .text-input {
       color: #fff;
     }
-
     .select {
       color: #fff;
     }
-
     *:-moz-placeholder {
       color: #fff !important;
     }
@@ -53,12 +45,20 @@ page-register {
       color: #fff !important;
     }
   }
-  .class2{
-
-
+  .class2 {
     border: solid 1px red !important;
   }
-  .class3{
-    background-color: transparent;
+  .class3 {
+    border: none;
+  }
+  ion-item .ng-invalid {
+    border: solid 1px red ;
+    border-right: none;
+  }
+  ion-item .valid {
+    border: none ;
+  }
+  ion-item .ng-untouched {
+    border: none ;
   }
 }
