@@ -1,28 +1,27 @@
 {
   "project_info": {
-    "project_number": "1002239621785",
-    "project_id": "ionic-gcm-180306"
+    "project_number": "535177797216",
+    "firebase_url": "https://clientspace-mobile.firebaseio.com",
+    "project_id": "clientspace-mobile",
+    "storage_bucket": "clientspace-mobile.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1002239621785:android:764d2cb7da3280eb",
+        "mobilesdk_app_id": "1:535177797216:android:5f81db291e344e2c",
         "android_client_info": {
-          "package_name": "io.ionic.starter"
+          "package_name": "client.space.lb"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1002239621785-eet3537vpcteivq7ddha1ogao1bj1qjd.apps.googleusercontent.com",
+          "client_id": "535177797216-lig7h1dstkfibt6am9vb3t4t290l596g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDp8eKDfPnfJcjeN87vSU-QEgLjuyuErnE"
-        },
-        {
-          "current_key": "AIzaSyCC9voKlletOi8UJXBRStmCC8z7OHGxcow"
+          "current_key": "AIzaSyBKlqwLi_TpfHuuQ9uC9YrXY_Kw_RLT7rw"
         }
       ],
       "services": {
@@ -34,7 +33,7 @@
           "other_platform_oauth_client": []
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }
