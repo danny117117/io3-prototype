@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "535177797216",
-    "firebase_url": "https://clientspace-mobile.firebaseio.com",
-    "project_id": "clientspace-mobile",
-    "storage_bucket": "clientspace-mobile.appspot.com"
+    "project_number": "529337326327",
+    "firebase_url": "https://clientspace-mobile-658d9.firebaseio.com",
+    "project_id": "clientspace-mobile-658d9",
+    "storage_bucket": "clientspace-mobile-658d9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:535177797216:android:5f81db291e344e2c",
+        "mobilesdk_app_id": "1:529337326327:android:5f81db291e344e2c",
         "android_client_info": {
           "package_name": "client.space.lb"
         }
       },
       "oauth_client": [
         {
-          "client_id": "535177797216-lig7h1dstkfibt6am9vb3t4t290l596g.apps.googleusercontent.com",
+          "client_id": "529337326327-rmfrpnoudga9t0vcopf0t3k18oh858f0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBKlqwLi_TpfHuuQ9uC9YrXY_Kw_RLT7rw"
+          "current_key": "AIzaSyB5SshrxH0bs5Ln8uPB4HkRjMeyGOnfuHA"
         }
       ],
       "services": {
