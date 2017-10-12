@@ -25,7 +25,9 @@ export class FirebaseanalyticsPage
             {
                 this.maindata = JSON.stringify(data);
             }
-        )
+        ).catch(function(err) {
+            this.errordata = err;
+        })
     }
 
 

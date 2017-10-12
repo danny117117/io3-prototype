@@ -19,12 +19,12 @@ import { Params_Acquire_PNS_Token } from '../../models/models';
 export class LandingPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private common : CommonServiceProvider, private api: DataServiceProvider) {
-    this.common.Register_PNS((x) =>{
-      let param = new Params_Acquire_PNS_Token();
-      param.input =x;
-      this.api.Acquire_PNS_Token(param).subscribe(()=> {alert('Token Saved on Server');});
-    });
-    this.navCtrl.push(HomePage);
+    // this.common.Register_PNS((x) =>{
+    //   let param = new Params_Acquire_PNS_Token();
+    //   param.input =x;
+    //   this.api.Acquire_PNS_Token(param).subscribe(()=> {alert('Token Saved on Server');});
+    // });
+     this.navCtrl.push(HomePage);
     
   }
 

@@ -5,7 +5,6 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {Keyboard} from '@ionic-native/keyboard';
 import {DatePicker} from '@ionic-native/date-picker';
-import {Push, PushObject, PushOptions} from '@ionic-native/push';
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
 import {DataServiceProvider} from '../providers/data-service/data-service';
@@ -30,11 +29,25 @@ import {FirebaseanalyticsPage} from "../pages/firebaseanalytics/firebaseanalytic
 import {Firebase} from "@ionic-native/firebase";
 import {FirebaseProvider} from '../providers/firebase/firebase';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 
 export function createTranslateLoader(http: Http) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+export const firebaseConfig = {
+    apiKey: "AIzaSyDPPNUCQHs602A0x26OtKXg0k-ofQok_3E",
+    authDomain: "client-space-mobile.firebaseapp.com",
+    databaseURL: "https://client-space-mobile.firebaseio.com",
+    projectId: "client-space-mobile",
+    storageBucket: "client-space-mobile.appspot.com",
+    messagingSenderId: "947181869234"
+  };
+
+  
 
 @NgModule({
     declarations: [
@@ -61,7 +74,10 @@ export function createTranslateLoader(http: Http) {
             scrollPadding: false,
             scrollAssist: true,
             autoFocusAssist: false
-        })
+        }),
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFireDatabaseModule,
+        AngularFireAuthModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -78,7 +94,6 @@ export function createTranslateLoader(http: Http) {
         DatePicker,
         Keyboard,
         Toast,
-        Push,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         DataServiceProvider,
         CommonServiceProvider,

@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from "@ionic-native/keyboard";
 import { LandingPage } from '../pages/landing/landing';
 import { TranslateService } from '@ngx-translate/core';
-import { AngularFirestore } from "angularfire2/firestore";
 
 @Component({
   templateUrl: 'app.html'
@@ -16,8 +15,7 @@ export class MyApp {
   constructor(platform: Platform,
               statusBar: StatusBar,
               splashScreen: SplashScreen,
-              kb: Keyboard,translate: TranslateService,
-            db: AngularFirestore) {
+              kb: Keyboard,translate: TranslateService) {
     translate.setDefaultLang('en');
 
     platform.ready().then(() => {
