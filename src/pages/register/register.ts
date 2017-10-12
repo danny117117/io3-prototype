@@ -6,8 +6,10 @@ import {DatePipe} from '@angular/common';
 import {basePage} from '../../models/basePage';
 import {DataServiceProvider} from '../../providers/data-service/data-service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Storage } from '@ionic/storage';
+import { TranslateService } from "@ngx-translate/core";
+import { CommonServiceProvider } from "../../providers/common-service/common-service";
 
-//ok
 @Component({
     selector: 'page-register',
     templateUrl: 'register.html',
@@ -21,9 +23,18 @@ export class RegisterPage extends basePage {
     constructor(public navCtrl: NavController,
                 private api: DataServiceProvider,
                 public formBuilder: FormBuilder, public navParams: NavParams,
-                private datePicker: DatePicker)
+                private datePicker: DatePicker,private storage: Storage,public translateService: TranslateService,private common: CommonServiceProvider,)
     {
         super();
+
+
+    storage.get('language').then((val) =>
+    {
+      this.translateService.use(val);
+      this.common.onLanguageChange(val);
+    });
+
+
         this.GetSignup();
         this.register = this.formBuilder.group({
             WEB_USER_ID: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(16)])],

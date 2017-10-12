@@ -1,0 +1,22 @@
+{
+    "UserName": "اسم المستخدم",
+    "PasswordWord": "كلمه السر",
+    "login": "تسجيل الدخول",
+    "language": "لغة",
+    "arabic":"عربى",
+    "english":"الإنجليزية",
+    "Loginwithfacebook":"تسجيل الدخول باستخدام الفيسبوك",
+    "or":"أو",
+    "Forgotyourlogindetail":"نسيت التفاصيل الخاصة بك تسجيل الدخول؟",
+    "Gethelpsigningin":"الحصول على مساعدة في تسجيل الدخول",
+    "Donthaveanaccount":"ليس لديك حساب؟ سجل",
+    "Register":"تسجيل",
+    "WebUserID":"ويب يوزر أي دي",
+    "Product":"المنتج",
+    "Policy":"سياسات #",
+    "ExpiryDate":"تاريخ الانتهاء",
+    "PIN":"دبوس",
+    "Email":"البريد الإلكتروني",
+    "Mobile":"التليفون المحمول",
+    "Cancel":"إلغاء"
+}

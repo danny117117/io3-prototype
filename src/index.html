@@ -11,6 +11,22 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4e8ef7">
 
+
+
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBUlHtUP1Sms32GXyLyWy1BK9U0k_rmdew",
+    authDomain: "clientspace-mobile-658d9.firebaseapp.com",
+    databaseURL: "https://clientspace-mobile-658d9.firebaseio.com",
+    projectId: "clientspace-mobile-658d9",
+    storageBucket: "clientspace-mobile-658d9.appspot.com",
+    messagingSenderId: "529337326327"
+  };
+  firebase.initializeApp(config);
+</script>
+
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
 
@@ -28,18 +44,18 @@
 </head>
 <body>
 
+
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
 
   <!-- The polyfills js is generated during the build process -->
   <script src="build/polyfills.js"></script>
 
-  <!-- The vendor js is generated during the build process
+  <!-- The vendor jsddd is generated during the build process
        It contains all of the dependencies in node_modules -->
   <script src="build/vendor.js"></script>
-
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
-
+  
 </body>
 </html>

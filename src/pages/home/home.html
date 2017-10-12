@@ -1,24 +1,26 @@
 <ion-content class='background'>
   <ion-card>
     <ion-card-header>
-      Login
+      {{ 'login' | translate }}
     </ion-card-header>
     <ion-card-content>
       <ion-list no-line>
         <ion-item>
-          <ion-input type="text" placeholder='User Name' id='Txt_USER_NAME' [(ngModel)]='data.USER_NAME'></ion-input>
+          <ion-input type="text" placeholder="{{ 'UserName' | translate }}" id='Txt_USER_NAME' [(ngModel)]='data.USER_NAME'></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input type="password" placeholder='password' id='Txt_PASSWORD' [(ngModel)]='data.PASSWORD'></ion-input>
+          <ion-input type="password" placeholder="{{ 'PasswordWord' | translate }}" id='Txt_PASSWORD' [(ngModel)]='data.PASSWORD'></ion-input>
         </ion-item>
-        <a>Forgot your login detail? <b>Get help signing in</b></a>
-        <button ion-button block outline color='light' (click)='Authenticate()' [disabled]="Processing">Log In</button>
-        <p>OR</p>
+        <button ion-button block (click)="onFirebase()">Firebase</button>
+        <button block (click)="presentActionSheet()" ion-button style="color:white">{{ 'language' | translate }}</button>
+        <a>{{ 'Forgotyourlogindetail' | translate }}<b>  {{ 'Gethelpsigningin' | translate }}</b></a>
+        <button ion-button block outline color='light' (click)='Authenticate()' [disabled]="Processing">{{ 'login' | translate }}</button>
+        <p style="color:white">{{ 'or' | translate }}</p>
         <button ion-button block color='facebook'>
-                <ion-icon name='logo-facebook'></ion-icon> Login with facebook
+                <ion-icon name='logo-facebook'></ion-icon> {{ 'Loginwithfacebook' | translate }}
               </button>
-      </ion-list>      
+      </ion-list>
     </ion-card-content>
   </ion-card>
-  <button (click)='ProceedToRegister()' ion-button clear full color='Light' class='bottom'>Don't have an account? Sign up</button>
+  <button (click)='ProceedToRegister()' ion-button clear full color='Light' class='bottom'>{{'Donthaveanaccount'|translate}}</button>
 </ion-content>

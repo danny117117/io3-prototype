@@ -1,0 +1,22 @@
+{
+    "UserName": "User Name",
+    "PasswordWord": "Pass Word",
+    "login":"Login",
+    "language":"Language",
+    "arabic":"Arabic",
+    "english":"English",
+    "Loginwithfacebook":"Login with facebook",
+    "or":"Or",
+    "Forgotyourlogindetail":"Forgot your login detail",
+    "Gethelpsigningin":"Get help signing in",
+    "Donthaveanaccount":"Don't have an account? Sign up",
+    "Register":"Register",
+    "WebUserID":"Web User ID",
+    "Product":"Product",
+    "Policy":"Policy #",
+    "ExpiryDate":"Expiry Date",
+    "PIN":"PIN",
+    "Email":"Email",
+    "Mobile":"Mobile",
+    "Cancel":"Cancel"
+}
