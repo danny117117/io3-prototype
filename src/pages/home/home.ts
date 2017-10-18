@@ -12,6 +12,7 @@ import {Storage} from '@ionic/storage';
 import {Keyboard} from "@ionic-native/keyboard";
 import {FirebaseanalyticsPage} from "../firebaseanalytics/firebaseanalytics";
 import {Firebase} from "@ionic-native/firebase";
+import {FirebaseProvider} from "../../providers/firebase/firebase";
 
 
 @Component({
@@ -21,6 +22,8 @@ import {Firebase} from "@ionic-native/firebase";
 export class HomePage extends basePage {
     language: string;
     data: Params_Authenticate = new Params_Authenticate();
+    user;
+    userToken;
 
     constructor(public navCtrl: NavController,
                 private toast: Toast,
@@ -31,38 +34,52 @@ export class HomePage extends basePage {
                 public actionSheetCtrl: ActionSheetController,
                 private storage: Storage,
                 Keyboard: Keyboard,
-                private firebase: Firebase) {
+                public firebaseprovider: FirebaseProvider,
+                public firebase: Firebase) {
         super();
 
 
-
         Keyboard.disableScroll(true);
-        this.data.USER_NAME = 'adib';
-        this.data.PASSWORD = '454540@KBTFSPA';
+        //this.data.USER_NAME = 'adib';
+        // this.data.PASSWORD = '454540@KBTFSPA';
+        this.data.USER_NAME = 'danny@hotmail.com';
+        this.data.PASSWORD = '1234567';
         this.api.DQNewSession().subscribe((data) => {
             this.common.SESSION_ID = data;
         })
-
         storage.get('language').then((val) => {
             this.translateService.use(val);
             this.common.onLanguageChange(val);
         });
 
-    }
-
-    Authenticate() {
-        this.Processing = true;
-        this.api.Authenticate(this.data).subscribe(
-            (result) => {
-                this.Processing = false;
-                if (result.Is_Authentic) {
-                    this.navCtrl.push(PortfolioPage);
-                }
-                else {
-                    this.toast.show("Invalid User Name / Password", '2000', 'top').subscribe(() => {
-                    });
-                }
+            this.storage.get('gotUserToken').then((val) => {
+                this.userToken = val;
+                this.firebase.getToken()
+                    .then((tokenuser) => {
+                        if (this.userToken != true) {
+                            console.log("-->" + this.userToken);
+                            alert(tokenuser);
+                            this.firebaseprovider.notRegistered(tokenuser);
+                        }
+                    }).catch((error) => {
+                    this.firebaseprovider.onToast(error);
+                });
             });
+    }
+    Authenticate() {
+        this.user = this.firebaseprovider.login(this.data.USER_NAME, this.data.PASSWORD);
+        // this.Processing = true;
+        // this.api.Authenticate(this.data).subscribe(
+        //     (result) => {
+        //         this.Processing = false;
+        //         if (result.Is_Authentic) {
+        //             this.navCtrl.push(PortfolioPage);
+        //         }
+        //         else {
+        //             this.toast.show("Invalid User Name / Password", '2000', 'top').subscribe(() => {
+        //             });
+        //         }
+        //     });
     }
 
     ProceedToRegister() {
@@ -70,9 +87,15 @@ export class HomePage extends basePage {
     }
 
     presentActionSheet() {
-        var english = this.translateService.instant('english');
-        var arabic = this.translateService.instant('arabic');
-        var language = this.translateService.instant('language');
+
+        this.storage.get("UserUID").then((val)=>{
+            console.log(val)
+        });
+
+
+        let english = this.translateService.instant('english');
+        let arabic = this.translateService.instant('arabic');
+        let language = this.translateService.instant('language');
         let actionSheet = this.actionSheetCtrl.create({
             title: language,
             buttons: [
@@ -95,8 +118,12 @@ export class HomePage extends basePage {
         });
         actionSheet.present();
     }
+    onLogOut() {
+        this.firebaseprovider.logoutUser();
+    }
 
     onFirebase() {
         this.navCtrl.push(FirebaseanalyticsPage)
     }
+
 }

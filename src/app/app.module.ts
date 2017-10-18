@@ -17,15 +17,13 @@ import {Toast} from '@ionic-native/toast';
 import {LandingPage} from '../pages/landing/landing';
 
 import {TranslateStore} from "@ngx-translate/core/src/translate.store";
-//import {TranslateService} from "ng2-translate";
 
 import {IonicStorageModule} from '@ionic/storage';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {FirebaseanalyticsPage} from "../pages/firebaseanalytics/firebaseanalytics";
-//import {Firebase} from "@ionic-native/firebase";
-//import {FirebaseAnalytics} from "@ionic-native/firebase-analytics";
+
 import {Firebase} from "@ionic-native/firebase";
 import {FirebaseProvider} from '../providers/firebase/firebase';
 
@@ -77,7 +75,7 @@ export const firebaseConfig = {
         }),
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFireDatabaseModule,
-        AngularFireAuthModule
+        AngularFireAuthModule,
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -100,6 +98,7 @@ export const firebaseConfig = {
         TranslateStore,
         Firebase,
         FirebaseProvider
+
     ]
 })
 export class AppModule {

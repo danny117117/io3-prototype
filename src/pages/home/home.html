@@ -16,7 +16,7 @@
         <a>{{ 'Forgotyourlogindetail' | translate }}<b>  {{ 'Gethelpsigningin' | translate }}</b></a>
         <button ion-button block outline color='light' (click)='Authenticate()' [disabled]="Processing">{{ 'login' | translate }}</button>
         <p style="color:white">{{ 'or' | translate }}</p>
-        <button ion-button block color='facebook'>
+        <button ion-button block color='facebook' (click)="onLogOut()">
                 <ion-icon name='logo-facebook'></ion-icon> {{ 'Loginwithfacebook' | translate }}
               </button>
       </ion-list>
