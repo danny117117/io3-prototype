@@ -3,7 +3,7 @@
     <name>Client Space</name>
     <description>Client Space Application</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.12.118:8100" />
+    <content original-src="index.html" src="http://192.168.12.59:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -81,6 +81,9 @@
     <allow-navigation href="http://192.168.12.134:8100" />
     <allow-navigation href="http://192.168.12.118:8100" />
     <allow-navigation href="http://10.0.0.18:8100" />
+    <allow-navigation href="http://10.0.0.16:8100" />
+    <allow-navigation href="http://10.0.0.21:8100" />
+    <allow-navigation href="http://192.168.12.59:8100" />
     <engine name="android" spec="^6.3.0" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
