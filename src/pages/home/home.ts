@@ -24,7 +24,7 @@ export class HomePage extends basePage {
     data: Params_Authenticate = new Params_Authenticate();
     user;
     userToken;
-//new
+
     constructor(public navCtrl: NavController,
                 private toast: Toast,
                 private api: DataServiceProvider,
@@ -37,13 +37,11 @@ export class HomePage extends basePage {
                 public firebaseprovider: FirebaseProvider,
                 public firebase: Firebase) {
         super();
-
-
         Keyboard.disableScroll(true);
-        //this.data.USER_NAME = 'adib';
-        // this.data.PASSWORD = '454540@KBTFSPA';
-        this.data.USER_NAME = 'danny@hotmail.com';
-        this.data.PASSWORD = '1234567';
+        this.data.USER_NAME = 'adib';
+         this.data.PASSWORD = '454540@KBTFSPA';
+        //this.data.USER_NAME = 'danny@hotmail.com';
+       // this.data.PASSWORD = '1234567';
         this.api.DQNewSession().subscribe((data) => {
             this.common.SESSION_ID = data;
         })
@@ -68,18 +66,18 @@ export class HomePage extends basePage {
     }
     Authenticate() {
         this.user = this.firebaseprovider.login(this.data.USER_NAME, this.data.PASSWORD);
-        // this.Processing = true;
-        // this.api.Authenticate(this.data).subscribe(
-        //     (result) => {
-        //         this.Processing = false;
-        //         if (result.Is_Authentic) {
-        //             this.navCtrl.push(PortfolioPage);
-        //         }
-        //         else {
-        //             this.toast.show("Invalid User Name / Password", '2000', 'top').subscribe(() => {
-        //             });
-        //         }
-        //     });
+        this.Processing = true;
+        this.api.Authenticate(this.data).subscribe(
+            (result) => {
+                this.Processing = false;
+                if (result.Is_Authentic) {
+                    this.navCtrl.push(PortfolioPage);
+                }
+                else {
+                    this.toast.show("Invalid User Name / Password", '2000', 'top').subscribe(() => {
+                    });
+                }
+            });
     }
 
     ProceedToRegister() {
