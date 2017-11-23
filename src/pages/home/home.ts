@@ -24,7 +24,7 @@ export class HomePage extends basePage {
     data: Params_Authenticate = new Params_Authenticate();
     user;
     userToken;
-
+//new
     constructor(public navCtrl: NavController,
                 private toast: Toast,
                 private api: DataServiceProvider,
