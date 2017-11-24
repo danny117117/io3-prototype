@@ -36,12 +36,10 @@ export class DataServiceProvider {
     this.url = this.common.APIBaseURL + '/DQNewSession'
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
-
     return this.http.post(this.url, {}, options)
       .map((res: Response) => {
         const body = res.json();
         let ret: string = '';
-       
         ret = res.json();
         return ret;
       })
@@ -49,26 +47,36 @@ export class DataServiceProvider {
   }
 
 
-  Authenticate(Params: Params_Authenticate): Observable<User> {
-    this.url = this.common.APIBaseURL + '/Authenticate'
-    const headers = new Headers({ 'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID });
-    const options = new RequestOptions({ headers: headers });
+  // Authenticate(Params: Params_Authenticate): Observable<User> {
+  //   this.url = this.common.APIBaseURL + '/Authenticate'
+  //   const headers = new Headers({ 'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID });
+  //   const options = new RequestOptions({ headers: headers });
+  //   return this.http.post(this.url, JSON.stringify(Params), options)
+  //     .map((res: Response) => {
+  //       const body = res.json();
+  //       let ret: User = new User();
+  //       ret = SerializationHelper.toInstance(ret, JSON.stringify(body));
+  //       console.log(ret)
+  //      return ret;
+  //     })
+  //     .catch(this.handleErrorPromise);
+  // }
+  Authenticate(Params: Params_Authenticate){
 
-    return this.http.post(this.url, JSON.stringify(Params), options)
-      .map((res: Response) => {
-        const body = res.json();
-        let ret: User = new User();
-        ret = SerializationHelper.toInstance(ret, JSON.stringify(body));
-        return ret;
-      })
-      .catch(this.handleErrorPromise);
+    const data={
+        Is_Authentic: true,
+        SESSION_ID: 1232
+      };
+alert(JSON.stringify(data));
+      return data;
   }
+
+
 
   GetSignup(Params: Params_GetSignup): Observable<Codes[]> {
     this.url = this.common.APIBaseURL + '/GetSignup'
     const headers = new Headers({ 'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID });
     const options = new RequestOptions({ headers: headers });
-
     return this.http.post(this.url, JSON.stringify(Params), options)
       .map((res: Response) => {
         const body = res.json();
@@ -78,8 +86,6 @@ export class DataServiceProvider {
       })
       .catch(this.handleErrorPromise);
   }
-
-
   Get_Portfolio(): Observable<Polcom[]>{
     this.url = this.common.APIBaseURL + '/Get_Portfolio'
     const headers = new Headers({ 'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID });
@@ -100,7 +106,6 @@ export class DataServiceProvider {
     this.url = this.common.APIBaseURL + '/Acquire_PNS_Token'
     const headers = new Headers({ 'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID });
     const options = new RequestOptions({ headers: headers });
-
     return this.http.post(this.url, JSON.stringify(Params), options)
       .map((res: Response) => {
         let ret : boolean = true;

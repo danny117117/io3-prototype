@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Platform, ActionSheetController} from 'ionic-angular';
+import {NavController, Platform, ActionSheetController, AlertController} from 'ionic-angular';
 import {Params_Authenticate} from '../../models/models';
 import {DataServiceProvider} from '../../providers/data-service/data-service';
 import {basePage} from '../../models/basePage';
@@ -35,62 +35,81 @@ export class HomePage extends basePage {
                 private storage: Storage,
                 Keyboard: Keyboard,
                 public firebaseprovider: FirebaseProvider,
-                public firebase: Firebase) {
+                public firebase: Firebase,
+                public alertCtrl: AlertController) {
         super();
         Keyboard.disableScroll(true);
         this.data.USER_NAME = 'adib';
-         this.data.PASSWORD = '454540@KBTFSPA';
+        this.data.PASSWORD = '454540@KBTFSPA';
         //this.data.USER_NAME = 'danny@hotmail.com';
-       // this.data.PASSWORD = '1234567';
+        // this.data.PASSWORD = '1234567';
         this.api.DQNewSession().subscribe((data) => {
             this.common.SESSION_ID = data;
-        })
+        });
         storage.get('language').then((val) => {
             this.translateService.use(val);
             this.common.onLanguageChange(val);
         });
 
-            this.storage.get('gotUserToken').then((val) => {
-                this.userToken = val;
-                this.firebase.getToken()
-                    .then((tokenuser) => {
-                        if (this.userToken != true) {
-                            console.log("-->" + this.userToken);
-                            alert(tokenuser);
-                            this.firebaseprovider.notRegistered(tokenuser);
-                        }
-                    }).catch((error) => {
-                    this.firebaseprovider.onToast(error);
-                });
+        this.storage.get('gotUserToken').then((val) => {
+            this.userToken = val;
+            this.firebase.getToken()
+                .then((tokenuser) => {
+                    if (this.userToken != true) {
+                        console.log("-->" + this.userToken);
+                        alert(tokenuser);
+                        this.firebaseprovider.notRegistered(tokenuser);
+                    }
+                }).catch((error) => {
+                this.firebaseprovider.onToast(error);
             });
+        });
     }
+
     Authenticate() {
         this.user = this.firebaseprovider.login(this.data.USER_NAME, this.data.PASSWORD);
         this.Processing = true;
-        this.api.Authenticate(this.data).subscribe(
-            (result) => {
-                this.Processing = false;
-                if (result.Is_Authentic) {
-                    this.navCtrl.push(PortfolioPage);
-                }
-                else {
-                    this.toast.show("Invalid User Name / Password", '2000', 'top').subscribe(() => {
-                    });
-                }
-            });
+        this.api.Authenticate(this.data);
+        // this.navCtrl.push(PortfolioPage);
+        // this.api.Authenticate(this.data).subscribe(
+        //     (result) => {
+        //         this.Processing = false;
+        //         if (result.Is_Authentic) {
+        //this.navCtrl.push(PortfolioPage);
+        //         }
+        //         else {
+        //             this.toast.show("Invalid User Name / Password", '2000', 'top').subscribe(() => {
+        //             });
+        //         }
+        //     });
     }
 
     ProceedToRegister() {
-        this.navCtrl.push(RegisterPage);
+        //  this.navCtrl.push(RegisterPage);
+        const alert = this.alertCtrl.create({
+            message: 'Are You Registered ?',
+            buttons: [
+                {
+                    text: 'yes',
+                    handler: () => {
+                        this.navCtrl.push(RegisterPage);
+                    }
+                },
+                {
+                    text: 'No',
+                    role: 'cancel',
+                    handler: () => {
+                    }
+                }
+            ]
+        })
+        alert.present();
     }
 
     presentActionSheet() {
-
-        this.storage.get("UserUID").then((val)=>{
+        this.storage.get("UserUID").then((val) => {
             console.log(val)
         });
-
-
         let english = this.translateService.instant('english');
         let arabic = this.translateService.instant('arabic');
         let language = this.translateService.instant('language');
@@ -116,6 +135,7 @@ export class HomePage extends basePage {
         });
         actionSheet.present();
     }
+
     onLogOut() {
         this.firebaseprovider.logoutUser();
     }

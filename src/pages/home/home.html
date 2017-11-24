@@ -1,26 +1,35 @@
 <ion-content class='background'>
-  <ion-card>
-    <ion-card-header>
-      {{ 'login' | translate }}
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list no-line>
-        <ion-item>
-          <ion-input type="text" placeholder="{{ 'UserName' | translate }}" id='Txt_USER_NAME' [(ngModel)]='data.USER_NAME'></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input type="password" placeholder="{{ 'PasswordWord' | translate }}" id='Txt_PASSWORD' [(ngModel)]='data.PASSWORD'></ion-input>
-        </ion-item>
-        <button ion-button block (click)="onFirebase()">Firebase</button>
-        <button block (click)="presentActionSheet()" ion-button style="color:white">{{ 'language' | translate }}</button>
-        <a>{{ 'Forgotyourlogindetail' | translate }}<b>  {{ 'Gethelpsigningin' | translate }}</b></a>
-        <button ion-button block outline color='light' (click)='Authenticate()' [disabled]="Processing">{{ 'login' | translate }}</button>
-        <p style="color:white">{{ 'or' | translate }}</p>
-        <button ion-button block color='facebook' (click)="onLogOut()">
-                <ion-icon name='logo-facebook'></ion-icon> {{ 'Loginwithfacebook' | translate }}
-              </button>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
-  <button (click)='ProceedToRegister()' ion-button clear full color='Light' class='bottom'>{{'Donthaveanaccount'|translate}}</button>
+    <ion-card>
+        <ion-card-header>
+            {{ 'login' | translate }}
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list no-line>
+                <ion-item>
+                    <ion-input type="text" placeholder="{{ 'UserName' | translate }}" id='Txt_USER_NAME'
+                               [(ngModel)]='data.USER_NAME'></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input type="password" placeholder="{{ 'PasswordWord' | translate }}" id='Txt_PASSWORD'
+                               [(ngModel)]='data.PASSWORD'></ion-input>
+                </ion-item>
+                <button ion-button block (click)="onFirebase()">Firebase</button>
+                <button block (click)="presentActionSheet()" ion-button style="color:white">{{ 'language' | translate
+                    }}
+                </button>
+                <a>{{ 'Forgotyourlogindetail' | translate }}<b> {{ 'Gethelpsigningin' | translate }}</b></a>
+                <button ion-button block outline color='light' (click)='Authenticate()' [disabled]="Processing">{{
+                    'login' | translate }}
+                </button>
+                <p style="color:white">{{ 'or' | translate }}</p>
+                <button ion-button block color='facebook' (click)="onLogOut()">
+                    <ion-icon name='logo-facebook'></ion-icon>
+                    {{ 'Loginwithfacebook' | translate }}
+                </button>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <button (click)='ProceedToRegister()' ion-button clear full color='Light' class='bottom'>
+        {{'Donthaveanaccount'|translate}}
+    </button>
 </ion-content>
