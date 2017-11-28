@@ -15,23 +15,16 @@ import {RegisterPage} from '../pages/register/register';
 import {PortfolioPage} from '../pages/portfolio/portfolio';
 import {Toast} from '@ionic-native/toast';
 import {LandingPage} from '../pages/landing/landing';
-
 import {TranslateStore} from "@ngx-translate/core/src/translate.store";
-
 import {IonicStorageModule} from '@ionic/storage';
-
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {FirebaseanalyticsPage} from "../pages/firebaseanalytics/firebaseanalytics";
-
 import {Firebase} from "@ionic-native/firebase";
 import {FirebaseProvider} from '../providers/firebase/firebase';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
-
 export function createTranslateLoader(http: Http) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -44,9 +37,6 @@ export const firebaseConfig = {
     storageBucket: "client-space-mobile.appspot.com",
     messagingSenderId: "947181869234"
   };
-
-  
-
 @NgModule({
     declarations: [
         MyApp,

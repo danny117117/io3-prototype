@@ -13,10 +13,10 @@
                     <ion-input type="password" placeholder="{{ 'PasswordWord' | translate }}" id='Txt_PASSWORD'
                                [(ngModel)]='data.PASSWORD'></ion-input>
                 </ion-item>
-                <button ion-button block (click)="onFirebase()">Firebase</button>
-                <button block (click)="presentActionSheet()" ion-button style="color:white">{{ 'language' | translate
-                    }}
-                </button>
+                <!--<button ion-button block (click)="onFirebase()">Firebase</button>-->
+                <!--<button block (click)="presentActionSheet()" ion-button style="color:white">{{ 'language' | translate-->
+                    <!--}}-->
+                <!--</button>-->
                 <a>{{ 'Forgotyourlogindetail' | translate }}<b> {{ 'Gethelpsigningin' | translate }}</b></a>
                 <button ion-button block outline color='light' (click)='Authenticate()' [disabled]="Processing">{{
                     'login' | translate }}

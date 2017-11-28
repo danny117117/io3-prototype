@@ -46,25 +46,25 @@ export class CommonServiceProvider
 
   // Register_PNS(OnRegistration: (x: any) => void)
   // {
-
-  //   //const pushObject: PushObject = this.push.init(this.PNS_Options);
-
-  //   // pushObject.on('notification').subscribe((notification: any) =>
-  //   // {
-  //   //   alert(notification);
-  //   //   //alert('Received a notification:' + JSON.stringify(notification)); 
-  //   //   OnRegistration(notification);
-  //   // }
-  //   // );
-
-  //   // pushObject.on('registration').subscribe((registration: any) =>
-  //   // {
-  //   //   //alert('Device registered: ' + registration)
-  //   //   alert(JSON.stringify(registration));
-  //   //   OnRegistration(registration.registrationId);
-  //   // }
-  //   // );
-  //   // pushObject.on('error').subscribe(error => alert('Error with Push plugin: ' + error));
+  //
+  //   const pushObject: PushObject = this.push.init(this.PNS_Options);
+  //
+  //   pushObject.on('notification').subscribe((notification: any) =>
+  //   {
+  //     alert(notification);
+  //     //alert('Received a notification:' + JSON.stringify(notification));
+  //     OnRegistration(notification);
+  //   }
+  //   );
+  //
+  //   pushObject.on('registration').subscribe((registration: any) =>
+  //   {
+  //     //alert('Device registered: ' + registration)
+  //     alert(JSON.stringify(registration));
+  //     OnRegistration(registration.registrationId);
+  //   }
+  //   );
+  //   pushObject.on('error').subscribe(error => alert('Error with Push plugin: ' + error));
   // }
 
 

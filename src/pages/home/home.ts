@@ -5,7 +5,7 @@ import {DataServiceProvider} from '../../providers/data-service/data-service';
 import {basePage} from '../../models/basePage';
 import {RegisterPage} from '../register/register';
 import {CommonServiceProvider} from '../../providers/common-service/common-service';
-import {PortfolioPage} from '../portfolio/portfolio';
+//import {PortfolioPage} from '../portfolio/portfolio';
 import {Toast} from '@ionic-native/toast';
 import {TranslateService} from "@ngx-translate/core";
 import {Storage} from '@ionic/storage';
