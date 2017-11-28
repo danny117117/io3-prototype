@@ -40,7 +40,7 @@ export class HomePage extends basePage {
         super();
         Keyboard.disableScroll(true);
         this.data.USER_NAME = 'adib';
-        this.data.PASSWORD = '454540@KBTFSPA';
+        this.data.PASSWORD = '454540@KRMCRHW';
         //this.data.USER_NAME = 'danny@hotmail.com';
         // this.data.PASSWORD = '1234567';
         this.api.DQNewSession().subscribe((data) => {
