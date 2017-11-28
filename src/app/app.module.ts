@@ -88,7 +88,6 @@ export const firebaseConfig = {
         TranslateStore,
         Firebase,
         FirebaseProvider
-
     ]
 })
 export class AppModule {
