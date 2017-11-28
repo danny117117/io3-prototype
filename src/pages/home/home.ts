@@ -13,6 +13,7 @@ import {Keyboard} from "@ionic-native/keyboard";
 import {FirebaseanalyticsPage} from "../firebaseanalytics/firebaseanalytics";
 import {Firebase} from "@ionic-native/firebase";
 import {FirebaseProvider} from "../../providers/firebase/firebase";
+import {PortfolioPage} from "../portfolio/portfolio";
 
 
 @Component({
@@ -41,8 +42,6 @@ export class HomePage extends basePage {
         Keyboard.disableScroll(true);
         this.data.USER_NAME = 'adib';
         this.data.PASSWORD = '454540@KRMCRHW';
-        //this.data.USER_NAME = 'danny@hotmail.com';
-        // this.data.PASSWORD = '1234567';
         this.api.DQNewSession().subscribe((data) => {
             this.common.SESSION_ID = data;
         });
@@ -50,7 +49,6 @@ export class HomePage extends basePage {
             this.translateService.use(val);
             this.common.onLanguageChange(val);
         });
-
         this.storage.get('gotUserToken').then((val) => {
             this.userToken = val;
             this.firebase.getToken()
@@ -65,23 +63,21 @@ export class HomePage extends basePage {
             });
         });
     }
-
     Authenticate() {
         this.user = this.firebaseprovider.login(this.data.USER_NAME, this.data.PASSWORD);
         this.Processing = true;
         this.api.Authenticate(this.data);
-        // this.navCtrl.push(PortfolioPage);
-        // this.api.Authenticate(this.data).subscribe(
-        //     (result) => {
-        //         this.Processing = false;
-        //         if (result.Is_Authentic) {
-        //this.navCtrl.push(PortfolioPage);
-        //         }
-        //         else {
-        //             this.toast.show("Invalid User Name / Password", '2000', 'top').subscribe(() => {
-        //             });
-        //         }
-        //     });
+        this.api.Authenticate(this.data).subscribe(
+            (result) => {
+                this.Processing = false;
+                if (result.Is_Authentic) {
+                    this.navCtrl.push(PortfolioPage);
+                }
+                else {
+                    this.toast.show("Invalid User Name / Password", '2000', 'top').subscribe(() => {
+                    });
+                }
+            });
     }
 
     ProceedToRegister() {

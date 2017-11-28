@@ -22,6 +22,8 @@ export class DataServiceProvider {
     SESSION_ID: string = '';
     url: string = '';
     constructor(public http: Http, private common: CommonServiceProvider) {}
+
+
     handleErrorPromise(error: Response | any) {
         //console.error(error.message || error);
         alert('Error: ' + JSON.stringify(error));
