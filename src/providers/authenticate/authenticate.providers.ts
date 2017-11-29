@@ -5,10 +5,6 @@ import {
     User,
     Params_Authenticate,
     SerializationHelper,
-    Params_GetSignup,
-    Codes,
-    Polcom,
-    Params_Acquire_PNS_Token
 } from '../../models/models';
 import {Observable} from "rxjs/Observable";
 import {CommonServiceProvider} from "../common-service/common-service";
