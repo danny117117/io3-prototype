@@ -39,24 +39,18 @@ export class HomePage extends basePage {
                 public firebaseprovider: FirebaseProvider,
                 public firebase: Firebase,
                 public alertCtrl: AlertController,
-                public authenticateprovider:AuthenticateProvider) {
+                public authenticateprovider: AuthenticateProvider) {
         super();
         this.storage.get("userInfo1").then((data) => {
             if (data.USER_NAME != "") {
                 this.navCtrl.setRoot(PortfolioPage);
             }
         });
-
-
         Keyboard.disableScroll(true);
-
         // this.data.USER_NAME = 'adib';
-       // this.data.PASSWORD = '454540@KRMCRHW';
-
-         this.data.USER_NAME = 'amine';
-         this.data.PASSWORD = '243216@QPEXZTG';
-
-
+        // this.data.PASSWORD = '454540@KRMCRHW';
+        this.data.USER_NAME = 'amine';
+        this.data.PASSWORD = '243216@QPEXZTG';
         this.api.DQNewSession().subscribe((data) => {
             this.common.SESSION_ID = data;
         });
@@ -82,7 +76,6 @@ export class HomePage extends basePage {
     Authenticate() {
         this.user = this.firebaseprovider.login(this.data.USER_NAME, this.data.PASSWORD);
         this.Processing = true;
-        //this.api.Authenticate(this.data);
         this.authenticateprovider.Authenticate(this.data).subscribe((result) => {
             this.Processing = false;
             if (result.Is_Authentic) {
