@@ -53,6 +53,9 @@ export class DataServiceProvider {
             })
             .catch(this.handleErrorPromise);
     }
+
+
+
     Get_Portfolio(): Observable<Polcom[]> {
         this.url = this.API + '/Get_Portfolio';
         const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
@@ -65,8 +68,6 @@ export class DataServiceProvider {
                 return ret;
             }).catch(this.handleErrorPromise);
     }
-
-
     Acquire_PNS_Token(Params: Params_Acquire_PNS_Token): Observable<boolean> {
         this.url = this.API + '/Acquire_PNS_Token'
         const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
@@ -77,7 +78,6 @@ export class DataServiceProvider {
                 return ret;
             }).catch(this.handleErrorPromise);
     }
-
 
 
     handleErrorPromise(error: Response | any) {
