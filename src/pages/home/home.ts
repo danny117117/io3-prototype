@@ -5,7 +5,6 @@ import {DataServiceProvider} from '../../providers/data-service/data-service';
 import {basePage} from '../../models/basePage';
 import {RegisterPage} from '../register/register';
 import {CommonServiceProvider} from '../../providers/common-service/common-service';
-//import {PortfolioPage} from '../portfolio/portfolio';
 import {Toast} from '@ionic-native/toast';
 import {TranslateService} from "@ngx-translate/core";
 import {Storage} from '@ionic/storage';
@@ -14,6 +13,7 @@ import {FirebaseanalyticsPage} from "../firebaseanalytics/firebaseanalytics";
 import {Firebase} from "@ionic-native/firebase";
 import {FirebaseProvider} from "../../providers/firebase/firebase";
 import {PortfolioPage} from "../portfolio/portfolio";
+import {AuthenticateProvider} from "../../providers/authenticate/authenticate.providers";
 
 
 @Component({
@@ -25,6 +25,7 @@ export class HomePage extends basePage {
     data: Params_Authenticate = new Params_Authenticate();
     user;
     userToken;
+    remember: boolean = false;
 
     constructor(public navCtrl: NavController,
                 private toast: Toast,
@@ -37,11 +38,25 @@ export class HomePage extends basePage {
                 Keyboard: Keyboard,
                 public firebaseprovider: FirebaseProvider,
                 public firebase: Firebase,
-                public alertCtrl: AlertController) {
+                public alertCtrl: AlertController,
+                public authenticateprovider:AuthenticateProvider) {
         super();
+        this.storage.get("userInfo1").then((data) => {
+            if (data.USER_NAME != "") {
+                this.navCtrl.setRoot(PortfolioPage);
+            }
+        });
+
+
         Keyboard.disableScroll(true);
-        this.data.USER_NAME = 'adib';
-        this.data.PASSWORD = '454540@KRMCRHW';
+
+        // this.data.USER_NAME = 'adib';
+       // this.data.PASSWORD = '454540@KRMCRHW';
+
+         this.data.USER_NAME = 'amine';
+         this.data.PASSWORD = '243216@QPEXZTG';
+
+
         this.api.DQNewSession().subscribe((data) => {
             this.common.SESSION_ID = data;
         });
@@ -63,27 +78,36 @@ export class HomePage extends basePage {
             });
         });
     }
+
     Authenticate() {
         this.user = this.firebaseprovider.login(this.data.USER_NAME, this.data.PASSWORD);
         this.Processing = true;
-        this.api.Authenticate(this.data);
-        this.api.Authenticate(this.data).subscribe(
-            (result) => {
-                this.Processing = false;
-                if (result.Is_Authentic) {
-                    this.navCtrl.push(PortfolioPage);
-                }
-                else {
-                    this.toast.show("Invalid User Name / Password", '2000', 'top').subscribe(() => {
+        //this.api.Authenticate(this.data);
+        this.authenticateprovider.Authenticate(this.data).subscribe((result) => {
+            this.Processing = false;
+            if (result.Is_Authentic) {
+                if (this.remember === true) {
+                    this.storage.set("userInfo1", this.data).then(() => {
+                        this.navCtrl.setRoot(PortfolioPage);
                     });
                 }
-            });
+                else {
+                    this.storage.set("userInfo1", {}).then(() => {
+                        this.navCtrl.push(PortfolioPage);
+                    });
+                }
+            }
+            else {
+                this.toast.show("Invalid User Name / Password", '2000', 'top').subscribe(() => {
+                });
+            }
+        });
     }
 
     ProceedToRegister() {
         //  this.navCtrl.push(RegisterPage);
         const alert = this.alertCtrl.create({
-            message: 'Are You Registered ?',
+            message: 'Do You Have Policy?',
             buttons: [
                 {
                     text: 'yes',
@@ -139,5 +163,4 @@ export class HomePage extends basePage {
     onFirebase() {
         this.navCtrl.push(FirebaseanalyticsPage)
     }
-
 }

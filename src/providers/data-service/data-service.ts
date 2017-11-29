@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable,Inject} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {CommonServiceProvider} from '../common-service/common-service';
 import {
@@ -16,12 +16,18 @@ import {Observable} from 'rxjs';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import {APP_CONFIG, AppConfig} from "../../config/configs";
 
 @Injectable()
 export class DataServiceProvider {
     SESSION_ID: string = '';
     url: string = '';
-    constructor(public http: Http, private common: CommonServiceProvider) {}
+    API:string='';
+    constructor(public http: Http,
+                private common: CommonServiceProvider,
+                @Inject(APP_CONFIG) public config: AppConfig) {
+        this.API=this.config.apiAddress;
+    }
 
 
     handleErrorPromise(error: Response | any) {
@@ -32,7 +38,7 @@ export class DataServiceProvider {
 
 
     DQNewSession(): Observable<string> {
-        this.url = this.common.APIBaseURL + '/DQNewSession'
+        this.url = this.API + '/DQNewSession'
         const headers = new Headers({'Content-Type': 'application/json'});
         const options = new RequestOptions({headers: headers});
         return this.http.post(this.url, {}, options)
@@ -45,23 +51,23 @@ export class DataServiceProvider {
     }
 
 
-    Authenticate(Params: Params_Authenticate): Observable<User> {
-      this.url = this.common.APIBaseURL + '/Authenticate'
-      const headers = new Headers({ 'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID });
-      const options = new RequestOptions({ headers: headers });
-      return this.http.post(this.url, JSON.stringify(Params), options)
-        .map((res: Response) => {
-          const body = res.json();
-          let ret: User = new User();
-          ret = SerializationHelper.toInstance(ret, JSON.stringify(body));
-          console.log(ret)
-         return ret;
-        }).catch(this.handleErrorPromise);
-    }
+    // Authenticate(Params: Params_Authenticate): Observable<User> {
+    //   this.url = this.API + '/Authenticate'
+    //   const headers = new Headers({ 'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID });
+    //   const options = new RequestOptions({ headers: headers });
+    //   return this.http.post(this.url, JSON.stringify(Params), options)
+    //     .map((res: Response) => {
+    //       const body = res.json();
+    //       let ret: User = new User();
+    //       ret = SerializationHelper.toInstance(ret, JSON.stringify(body));
+    //       console.log(ret)
+    //      return ret;
+    //     }).catch(this.handleErrorPromise);
+    // }
 
 
     GetSignup(Params: Params_GetSignup): Observable<Codes[]> {
-        this.url = this.common.APIBaseURL + '/GetSignup'
+        this.url = this.API + '/GetSignup'
         const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
         const options = new RequestOptions({headers: headers});
         return this.http.post(this.url, JSON.stringify(Params), options)
@@ -76,7 +82,7 @@ export class DataServiceProvider {
 
 
     Get_Portfolio(): Observable<Polcom[]> {
-        this.url = this.common.APIBaseURL + '/Get_Portfolio'
+        this.url = this.API + '/Get_Portfolio';
         const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
         const options = new RequestOptions({headers: headers});
         return this.http.post(this.url, {}, options)
@@ -85,13 +91,12 @@ export class DataServiceProvider {
                 let ret: Polcom[] = [];
                 ret = SerializationHelper.toInstance(ret, JSON.stringify(body));
                 return ret;
-            })
-            .catch(this.handleErrorPromise);
+            }).catch(this.handleErrorPromise);
     }
 
 
     Acquire_PNS_Token(Params: Params_Acquire_PNS_Token): Observable<boolean> {
-        this.url = this.common.APIBaseURL + '/Acquire_PNS_Token'
+        this.url = this.API + '/Acquire_PNS_Token'
         const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
         const options = new RequestOptions({headers: headers});
         return this.http.post(this.url, JSON.stringify(Params), options)

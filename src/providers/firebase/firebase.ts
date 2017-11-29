@@ -12,7 +12,6 @@ import 'rxjs/add/operator/catch';
 import {Observable} from 'rxjs/Observable'
 
 
-
 @Injectable()
 export class FirebaseProvider {
     // authListener;
@@ -21,7 +20,7 @@ export class FirebaseProvider {
     notregisteredlist;
     authListener;
     userId;
-    api="https://us-central1-client-space-mobile.cloudfunctions.net/";
+    api = "https://us-central1-client-space-mobile.cloudfunctions.net/";
 
     constructor(public http: Http,
                 public firebaseAuth: AngularFireAuth,
@@ -50,8 +49,6 @@ export class FirebaseProvider {
     }
 
 
-
-
     signup(email: string, password: string) {
 
         // this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
@@ -65,16 +62,15 @@ export class FirebaseProvider {
         // this.firebase.onTokenRefresh()
 
 
-            return this.http.get(this.api+"sign_up")
-                .do(this.logResponse)
-                .map(this.extractData)
-                .catch(this.catchError);
-
+        return this.http.get(this.api + "sign_up")
+            .do(this.logResponse)
+            .map(this.extractData)
+            .catch(this.catchError);
 
 
     }
 
-    login(newEmail: string, newPassword: string){
+    login(newEmail: string, newPassword: string) {
         // return this.firebaseAuth.auth.signInWithEmailAndPassword(newEmail, newPassword).then((user) => {
         //     this.onToast(user);
         //     this.storage.get('UserUID').then((key) => {
@@ -109,13 +105,13 @@ export class FirebaseProvider {
             headers: headers
         });
         let data = {
-            token:token
+            token: token
         };
-        return this.http.post(this.api+"notRegistered", JSON.stringify(data), options)
+        return this.http.post(this.api + "notRegistered", JSON.stringify(data), options)
             .do(this.logResponse)
             .map(this.extractData)
-            .subscribe(()=>{
-            alert("da");
+            .subscribe(() => {
+                alert("da");
             });
     }
 
@@ -138,11 +134,6 @@ export class FirebaseProvider {
     }
 
 
-
-
-
-
-
     private catchError(error: Response | any) {
         console.log(error);
         return Observable.throw(error.jason().error() || "Server Error");
@@ -159,10 +150,12 @@ export class FirebaseProvider {
     logoutUser() {
         return this.firebaseAuth.auth.signOut();
     }
+
     getUserUID(data) {
         this.userId = data.key;
         this.storage.set("UserUID", this.userId);
     }
+
     onToast(data) {
         this.toast.show(JSON.stringify(data), '5000', 'top').subscribe();
     }

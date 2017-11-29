@@ -23,7 +23,11 @@ export class RegisterPage extends basePage {
     constructor(public navCtrl: NavController,
                 private api: DataServiceProvider,
                 public formBuilder: FormBuilder, public navParams: NavParams,
-                private datePicker: DatePicker,private storage: Storage,public translateService: TranslateService,private common: CommonServiceProvider,)
+                private datePicker: DatePicker,
+                private storage: Storage,
+                public translateService: TranslateService,
+                private common: CommonServiceProvider,
+                public dataservices:DataServiceProvider)
     {
         super();
 
@@ -34,12 +38,12 @@ export class RegisterPage extends basePage {
       this.common.onLanguageChange(val);
     });
 
-
+        //POLICY_NBR: ["", Validators.compose([Validators.required, Validators.pattern('([a-zA-Z]{3,3})(\\/)([0-9]{6,14})')])],
         this.GetSignup();
         this.register = this.formBuilder.group({
             WEB_USER_ID: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(16)])],
             PRODUCT_CODE: "",
-            POLICY_NBR: ["", Validators.compose([Validators.required, Validators.pattern('([a-zA-Z]{3,3})(\\/)([0-9]{6,14})')])],
+            POLICY_NBR: [""],
             PIN: "",
             EMAIL: ["",Validators.pattern('^[_a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$')],
             MOBILE: []
@@ -88,6 +92,10 @@ export class RegisterPage extends basePage {
         );
     }
     onRegister() {
-        alert(JSON.stringify(this.registerInfo));
+      //  alert(JSON.stringify(this.registerInfo));
+
+        this.dataservices.GetSignup(this.registerInfo).subscribe((data)=>{
+            alert(JSON.stringify(data));
+        });
     }
 }

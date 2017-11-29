@@ -17,6 +17,12 @@
                 <!--<button block (click)="presentActionSheet()" ion-button style="color:white">{{ 'language' | translate-->
                     <!--}}-->
                 <!--</button>-->
+                <ion-item>
+                    <ion-label>remember me ?</ion-label>
+                    <ion-checkbox [(ngModel)]="remember"></ion-checkbox>
+                </ion-item>
+
+
                 <a>{{ 'Forgotyourlogindetail' | translate }}<b> {{ 'Gethelpsigningin' | translate }}</b></a>
                 <button ion-button block outline color='light' (click)='Authenticate()' [disabled]="Processing">{{
                     'login' | translate }}

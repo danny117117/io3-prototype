@@ -13,7 +13,6 @@ import {Platform} from "ionic-angular";
 */
 @Injectable()
 export class CommonServiceProvider {
-    APIBaseURL: string = 'http://192.168.12.28/WebAPIProtoType/Api/Polcom';
     SESSION_ID: string = '';
     constructor(public http: Http,
                 public translateService: TranslateService,

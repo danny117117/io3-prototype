@@ -22,9 +22,13 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {FirebaseanalyticsPage} from "../pages/firebaseanalytics/firebaseanalytics";
 import {Firebase} from "@ionic-native/firebase";
 import {FirebaseProvider} from '../providers/firebase/firebase';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {LogoutPage} from "../pages/logout/logout";
+import {APP_CONFIG, rony} from "../config/configs";
+import {AuthenticateProvider} from '../providers/authenticate/authenticate.providers';
+
 export function createTranslateLoader(http: Http) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -36,7 +40,8 @@ export const firebaseConfig = {
     projectId: "client-space-mobile",
     storageBucket: "client-space-mobile.appspot.com",
     messagingSenderId: "947181869234"
-  };
+};
+
 @NgModule({
     declarations: [
         MyApp,
@@ -44,7 +49,8 @@ export const firebaseConfig = {
         HomePage,
         RegisterPage,
         PortfolioPage,
-        FirebaseanalyticsPage
+        FirebaseanalyticsPage,
+        LogoutPage
     ],
     imports: [
         BrowserModule,
@@ -74,7 +80,8 @@ export const firebaseConfig = {
         HomePage,
         RegisterPage,
         PortfolioPage,
-        FirebaseanalyticsPage
+        FirebaseanalyticsPage,
+        LogoutPage
     ],
     providers: [
         StatusBar,
@@ -86,8 +93,11 @@ export const firebaseConfig = {
         DataServiceProvider,
         CommonServiceProvider,
         TranslateStore,
+        AuthenticateProvider,
         Firebase,
-        FirebaseProvider
+        FirebaseProvider,
+        {provide: APP_CONFIG, useValue: rony},
+        AuthenticateProvider,
     ]
 })
 export class AppModule {
