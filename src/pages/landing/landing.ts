@@ -24,7 +24,7 @@ export class LandingPage {
     //   param.input =x;
     //   this.api.Acquire_PNS_Token(param).subscribe(()=> {alert('Token Saved on Server');});
     // });
-     this.navCtrl.push(HomePage);
+     this.navCtrl.setRoot(HomePage);
     
   }
 
