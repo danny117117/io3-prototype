@@ -1,14 +1,15 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, Platform} from 'ionic-angular';
+import {AlertController, NavController, NavParams, Platform} from 'ionic-angular';
 import {DatePicker} from '@ionic-native/date-picker';
 import {RegisterInfo, Params_GetSignup, Codes} from '../../models/models';
 import {DatePipe} from '@angular/common';
 import {basePage} from '../../models/basePage';
 import {DataServiceProvider} from '../../providers/data-service/data-service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { Storage } from '@ionic/storage';
-import { TranslateService } from "@ngx-translate/core";
-import { CommonServiceProvider } from "../../providers/common-service/common-service";
+import {Storage} from '@ionic/storage';
+import {TranslateService} from "@ngx-translate/core";
+import {CommonServiceProvider} from "../../providers/common-service/common-service";
+import {Toast} from "@ionic-native/toast";
 
 @Component({
     selector: 'page-register',
@@ -20,6 +21,7 @@ export class RegisterPage extends basePage {
     registerInfo: RegisterInfo = new RegisterInfo();
     isMobile = true;
     isMail = true;
+
     constructor(public navCtrl: NavController,
                 private api: DataServiceProvider,
                 public formBuilder: FormBuilder, public navParams: NavParams,
@@ -27,16 +29,23 @@ export class RegisterPage extends basePage {
                 private storage: Storage,
                 public translateService: TranslateService,
                 private common: CommonServiceProvider,
-                public dataservices:DataServiceProvider)
-    {
+                public dataservices: DataServiceProvider,
+                public alertCtrl: AlertController,
+                private toast: Toast) {
         super();
+        this.registerInfo.WEB_USER_ID = "12341234";
+        this.registerInfo.PRODUCT_CODE = "SHP";
+        this.registerInfo.POLICY_NBR = "2634";
+        this.registerInfo.EXPIRY_DATE = "14/12/2056";
+        this.registerInfo.PIN = 897;
+        this.registerInfo.MOBILE = "03172765";
+        this.registerInfo.EMAIL = "danny_nader@hotmail.com";
 
 
-    storage.get('language').then((val) =>
-    {
-      this.translateService.use(val);
-      this.common.onLanguageChange(val);
-    });
+        storage.get('language').then((val) => {
+            this.translateService.use(val);
+            this.common.onLanguageChange(val);
+        });
 
         //POLICY_NBR: ["", Validators.compose([Validators.required, Validators.pattern('([a-zA-Z]{3,3})(\\/)([0-9]{6,14})')])],
         this.GetSignup();
@@ -45,17 +54,18 @@ export class RegisterPage extends basePage {
             PRODUCT_CODE: "",
             POLICY_NBR: [""],
             PIN: "",
-            EMAIL: ["",Validators.pattern('^[_a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$')],
+            EMAIL: ["", Validators.pattern('^[_a-z0-9]+(\\.[_a-z0-9]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$')],
             MOBILE: []
         });
         //Listen to email value and update validators of phoneNumber accordingly
         this.register.get('EMAIL').valueChanges.subscribe(
-            (data )=> {
+            (data) => {
                 this.onEmailValueChanged(data)
 
             }
         );
     }
+
     onEmailValueChanged(value: any) {
         let phoneNumberControl = this.register.get('MOBILE');
 
@@ -70,15 +80,18 @@ export class RegisterPage extends basePage {
 
 
     }
+
     GetSignup() {
         let param = new Params_GetSignup();
         this.api.GetSignup(param).subscribe((data) => {
             this.products = data.filter(x => x.Tbl_Name == '_WebProducts');
         });
     }
+
     CancelHandler() {
         this.navCtrl.pop();
     }
+
     selectExpiryDate() {
         this.datePicker.show({
             date: new Date(),
@@ -91,11 +104,33 @@ export class RegisterPage extends basePage {
             err => alert(err)
         );
     }
-    onRegister() {
-      //  alert(JSON.stringify(this.registerInfo));
 
-        this.dataservices.GetSignup(this.registerInfo).subscribe((data)=>{
-            alert(JSON.stringify(data));
+    onRegister() {
+        this.dataservices.registerInfo(this.registerInfo).subscribe((data) => {
+            if (data.res == "validate") {
+
+                this.toast.show(`There is  Policy Found`, '5000', 'top').subscribe(
+                    toast => {
+                        this.navCtrl.pop();
+                    }
+                );
+            }
+            else {
+                const alert = this.alertCtrl.create({
+                    title: "Invalidate",
+                    subTitle: "There is no Policy Found",
+                    buttons: [
+                        {
+                            text: "Ok"
+                        }
+                    ]
+                })
+                alert.present();
+            }
+
+        }, (err) => {
+            alert("Something Want Wrong")
         });
+
     }
 }

@@ -26,7 +26,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {LogoutPage} from "../pages/logout/logout";
-import {APP_CONFIG, rony} from "../config/configs";
+import {APP_CONFIG, danny, rony} from "../config/configs";
 import {AuthenticateProvider} from '../providers/authenticate/authenticate.providers';
 
 export function createTranslateLoader(http: Http) {
@@ -97,7 +97,7 @@ export const firebaseConfig = {
         AuthenticateProvider,
         Firebase,
         FirebaseProvider,
-        {provide: APP_CONFIG, useValue: rony},
+        {provide: APP_CONFIG, useValue: danny},
         AuthenticateProvider,
     ]
 })

@@ -35,8 +35,8 @@ export class PortfolioPage {
     }
     Get_Portfolio() {
         const load = this.loadCtrl.create({});
-        load.present();
-        this.api.Get_Portfolio().subscribe((data) => {
+         load.present();
+         this.api.Get_Portfolio().subscribe((data) => {
             this.policies = data;
             load.dismiss();
         },(err)=>{

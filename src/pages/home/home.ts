@@ -48,9 +48,9 @@ export class HomePage extends basePage {
         });
         Keyboard.disableScroll(true);
         // this.data.USER_NAME = 'adib';
-        // this.data.PASSWORD = '454540@KRMCRHW';
+        //  this.data.PASSWORD = '454540@EVDQJJX';
         this.data.USER_NAME = 'amine';
-        this.data.PASSWORD = '243216@QPEXZTG';
+        this.data.PASSWORD = '243216@VXPZBLU';
         this.api.DQNewSession().subscribe((data) => {
             this.common.SESSION_ID = data;
         });

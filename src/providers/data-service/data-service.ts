@@ -1,4 +1,4 @@
-import {Injectable,Inject} from '@angular/core';
+import {Injectable, Inject} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {CommonServiceProvider} from '../common-service/common-service';
 import {
@@ -19,11 +19,15 @@ import {APP_CONFIG, AppConfig} from "../../config/configs";
 export class DataServiceProvider {
     SESSION_ID: string = '';
     url: string = '';
-    API:string='';
+    url1: string = '';
+    API: string = '';
+    Nodeapi: string = '';
+
     constructor(public http: Http,
                 private common: CommonServiceProvider,
                 @Inject(APP_CONFIG) public config: AppConfig) {
-        this.API=this.config.apiAddress;
+        this.API = this.config.apiAddress;
+        this.Nodeapi = this.config.apiNode;
     }
 
     DQNewSession(): Observable<string> {
@@ -55,7 +59,6 @@ export class DataServiceProvider {
     }
 
 
-
     Get_Portfolio(): Observable<Polcom[]> {
         this.url = this.API + '/Get_Portfolio';
         const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
@@ -68,6 +71,7 @@ export class DataServiceProvider {
                 return ret;
             }).catch(this.handleErrorPromise);
     }
+
     Acquire_PNS_Token(Params: Params_Acquire_PNS_Token): Observable<boolean> {
         this.url = this.API + '/Acquire_PNS_Token'
         const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
@@ -79,6 +83,14 @@ export class DataServiceProvider {
             }).catch(this.handleErrorPromise);
     }
 
+    registerInfo(data) {
+        this.url1 = this.Nodeapi + 'registerInfo';
+        const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
+        const options = new RequestOptions({headers: headers});
+        return this.http.post(this.url1, JSON.stringify(data), options).map((res: Response) => {
+            return res.json();
+        })
+    }
 
     handleErrorPromise(error: Response | any) {
         //console.error(error.message || error);
