@@ -95,11 +95,16 @@ export class DataServiceProvider {
     }
 
 
-    RegisterWithPolicy(data) {
+    RegisterWithPolicy(info) {
         this.url1 = this.Nodeapi + 'registerwithpolicy';
-        const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
-        const options = new RequestOptions({headers: headers});
-        return this.http.post(this.url1, JSON.stringify(data), options).map((res: Response) => {
+        const headers = new Headers({
+            'content-type': 'application/x-www-form-urlencoded', 'SESSION_ID': this.common.SESSION_ID
+        });
+        const options = new RequestOptions({
+            headers: headers
+        });
+        let data="registerwithpolicynumber="+info;
+        return this.http.post(this.url1, data, options).map((res: Response) => {
             return res.json();
         })
     }
