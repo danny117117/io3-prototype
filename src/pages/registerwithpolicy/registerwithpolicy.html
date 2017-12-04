@@ -1,18 +1,16 @@
-<!--
-  Generated template for the RegisterwithpolicyPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>registerwithpolicy</ion-title>
-  </ion-navbar>
-
+    <ion-navbar>
+        <ion-title>register with policy</ion-title>
+    </ion-navbar>
 </ion-header>
-
-
 <ion-content padding>
-
+   <form #form="ngForm"  (ngSubmit)="onRegisterWithPolicy(form)">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Enter Your Secret Number</ion-label>
+                <ion-input type="text" name="registerpolicynumber" [(ngModel)]='registerpolicynumber'></ion-input>
+            </ion-item>
+        </ion-list>
+        <button ion-button block>Send</button>
+    </form>
 </ion-content>

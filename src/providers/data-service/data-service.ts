@@ -83,6 +83,8 @@ export class DataServiceProvider {
             }).catch(this.handleErrorPromise);
     }
 
+
+
     registerInfo(data) {
         this.url1 = this.Nodeapi + 'registerInfo';
         const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
@@ -91,6 +93,22 @@ export class DataServiceProvider {
             return res.json();
         })
     }
+
+
+    RegisterWithPolicy(data) {
+        this.url1 = this.Nodeapi + 'registerwithpolicy';
+        const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
+        const options = new RequestOptions({headers: headers});
+        return this.http.post(this.url1, JSON.stringify(data), options).map((res: Response) => {
+            return res.json();
+        })
+    }
+
+
+
+
+
+
 
     handleErrorPromise(error: Response | any) {
         //console.error(error.message || error);

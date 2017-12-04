@@ -28,6 +28,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import {LogoutPage} from "../pages/logout/logout";
 import {APP_CONFIG, danny, rony} from "../config/configs";
 import {AuthenticateProvider} from '../providers/authenticate/authenticate.providers';
+import {RegisterwithpolicyPage} from "../pages/registerwithpolicy/registerwithpolicy";
 
 export function createTranslateLoader(http: Http) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -50,7 +51,8 @@ export const firebaseConfig = {
         RegisterPage,
         PortfolioPage,
         FirebaseanalyticsPage,
-        LogoutPage
+        LogoutPage,
+        RegisterwithpolicyPage
     ],
     imports: [
         BrowserModule,
@@ -82,7 +84,8 @@ export const firebaseConfig = {
         RegisterPage,
         PortfolioPage,
         FirebaseanalyticsPage,
-        LogoutPage
+        LogoutPage,
+        RegisterwithpolicyPage
     ],
     providers: [
         StatusBar,

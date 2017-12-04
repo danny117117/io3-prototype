@@ -5,12 +5,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Keyboard } from "@ionic-native/keyboard";
 import { LandingPage } from '../pages/landing/landing';
 import { TranslateService } from '@ngx-translate/core';
+import {RegisterwithpolicyPage} from "../pages/registerwithpolicy/registerwithpolicy";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LandingPage;
+  rootPage:any = RegisterwithpolicyPage;
 
   constructor(platform: Platform,
               statusBar: StatusBar,

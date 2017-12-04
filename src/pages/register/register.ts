@@ -10,6 +10,7 @@ import {Storage} from '@ionic/storage';
 import {TranslateService} from "@ngx-translate/core";
 import {CommonServiceProvider} from "../../providers/common-service/common-service";
 import {Toast} from "@ionic-native/toast";
+import {RegisterwithpolicyPage} from "../registerwithpolicy/registerwithpolicy";
 
 @Component({
     selector: 'page-register',
@@ -24,7 +25,8 @@ export class RegisterPage extends basePage {
 
     constructor(public navCtrl: NavController,
                 private api: DataServiceProvider,
-                public formBuilder: FormBuilder, public navParams: NavParams,
+                public formBuilder: FormBuilder,
+                public navParams: NavParams,
                 private datePicker: DatePicker,
                 private storage: Storage,
                 public translateService: TranslateService,
@@ -109,11 +111,12 @@ export class RegisterPage extends basePage {
         this.dataservices.registerInfo(this.registerInfo).subscribe((data) => {
             if (data.res == "validate") {
 
-                this.toast.show(`There is  Policy Found`, '5000', 'top').subscribe(
+                this.toast.show(`There Was A Policy Found`, '5000', 'center').subscribe(
                     toast => {
-                        this.navCtrl.pop();
+
                     }
                 );
+                this.navCtrl.push(RegisterwithpolicyPage);
             }
             else {
                 const alert = this.alertCtrl.create({
@@ -124,7 +127,7 @@ export class RegisterPage extends basePage {
                             text: "Ok"
                         }
                     ]
-                })
+                });
                 alert.present();
             }
 
