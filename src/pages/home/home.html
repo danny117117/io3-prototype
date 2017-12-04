@@ -23,7 +23,7 @@
                 </ion-item>
 
 
-                <a>{{ 'Forgotyourlogindetail' | translate }}<b> {{ 'Gethelpsigningin' | translate }}</b></a>
+                <a (click)="onForgetPassword()">{{ 'Forgotyourlogindetail' | translate }}<b> {{ 'Gethelpsigningin' | translate }}</b></a>
                 <button ion-button block outline color='light' (click)='Authenticate()' [disabled]="Processing">{{
                     'login' | translate }}
                 </button>

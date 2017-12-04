@@ -29,6 +29,7 @@ import {LogoutPage} from "../pages/logout/logout";
 import {APP_CONFIG, danny, rony} from "../config/configs";
 import {AuthenticateProvider} from '../providers/authenticate/authenticate.providers';
 import {RegisterwithpolicyPage} from "../pages/registerwithpolicy/registerwithpolicy";
+import {ForgetpasswordPage} from "../pages/forgetpassword/forgetpassword";
 
 export function createTranslateLoader(http: Http) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -52,7 +53,8 @@ export const firebaseConfig = {
         PortfolioPage,
         FirebaseanalyticsPage,
         LogoutPage,
-        RegisterwithpolicyPage
+        RegisterwithpolicyPage,
+        ForgetpasswordPage
     ],
     imports: [
         BrowserModule,
@@ -85,7 +87,8 @@ export const firebaseConfig = {
         PortfolioPage,
         FirebaseanalyticsPage,
         LogoutPage,
-        RegisterwithpolicyPage
+        RegisterwithpolicyPage,
+        ForgetpasswordPage
     ],
     providers: [
         StatusBar,

@@ -110,6 +110,21 @@ export class DataServiceProvider {
     }
 
 
+    ForgetPassword(question) {
+        this.url1 = this.Nodeapi + 'forgetpassword';
+        const headers = new Headers({
+            'content-type': 'application/x-www-form-urlencoded', 'SESSION_ID': this.common.SESSION_ID
+        });
+        const options = new RequestOptions({
+            headers: headers
+        });
+        let data="question="+question;
+        return this.http.post(this.url1, data, options).map((res: Response) => {
+            return res.json();
+        })
+    }
+
+
 
 
 

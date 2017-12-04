@@ -14,6 +14,7 @@ import {Firebase} from "@ionic-native/firebase";
 import {FirebaseProvider} from "../../providers/firebase/firebase";
 import {PortfolioPage} from "../portfolio/portfolio";
 import {AuthenticateProvider} from "../../providers/authenticate/authenticate.providers";
+import {ForgetpasswordPage} from "../forgetpassword/forgetpassword";
 
 
 @Component({
@@ -71,6 +72,11 @@ export class HomePage extends basePage {
                 this.firebaseprovider.onToast(error);
             });
         });
+    }
+
+
+    onForgetPassword() {
+        this.navCtrl.push(ForgetpasswordPage)
     }
 
     Authenticate() {
