@@ -13,7 +13,6 @@ import {AuthenticateProvider} from "../../providers/authenticate/authenticate.pr
 export class PortfolioPage {
     policies: Polcom[] = [];
     user = {};
-
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private api: DataServiceProvider,
@@ -21,33 +20,28 @@ export class PortfolioPage {
                 public popoverCtrl: PopoverController,
                 private dataservice: DataServiceProvider,
                 private loadCtrl: LoadingController,
-                public authenticateprovider:AuthenticateProvider) {
-
-
+                public authenticateprovider: AuthenticateProvider) {
         this.storage.get("userInfo1").then((data) => {
             this.user = data;
-            if(data!=null) {
+            if (data != null) {
                 this.authenticateprovider.Authenticate(data).subscribe((data) => {
                     this.Get_Portfolio();
                 }, (err) => {
                     this.Get_Portfolio();
                 })
             }
-            else{
+            else {
                 this.Get_Portfolio();
             }
         });
-
-
-
     }
     Get_Portfolio() {
         const load = this.loadCtrl.create({});
-         load.present();
-         this.api.Get_Portfolio().subscribe((data) => {
+        load.present();
+        this.api.Get_Portfolio().subscribe((data) => {
             this.policies = data;
             load.dismiss();
-        },(err)=>{
+        }, (err) => {
             alert("Somerthing Want Wrong");
         });
     }
