@@ -15,7 +15,7 @@ import {FirebaseProvider} from "../../providers/firebase/firebase";
 import {PortfolioPage} from "../portfolio/portfolio";
 import {AuthenticateProvider} from "../../providers/authenticate/authenticate.providers";
 import {ForgetpasswordPage} from "../forgetpassword/forgetpassword";
-
+import * as _ from 'lodash';
 
 @Component({
     selector: 'page-home',
@@ -41,9 +41,12 @@ export class HomePage extends basePage {
                 public firebase: Firebase,
                 public alertCtrl: AlertController,
                 public authenticateprovider: AuthenticateProvider) {
+
+
         super();
         this.storage.get("userInfo1").then((data) => {
-            if (data.USER_NAME != "") {
+
+            if (data.USER_NAME != "" || !_.isEmpty(data)) {
                 this.navCtrl.setRoot(PortfolioPage);
             }
         });
@@ -74,9 +77,9 @@ export class HomePage extends basePage {
         });
     }
 
-
     onForgetPassword() {
-        this.navCtrl.push(ForgetpasswordPage)
+        this.navCtrl.push(ForgetpasswordPage
+        )
     }
 
     Authenticate() {
@@ -91,9 +94,8 @@ export class HomePage extends basePage {
                     });
                 }
                 else {
-                    this.storage.set("userInfo1", {}).then(() => {
-                        this.navCtrl.push(PortfolioPage);
-                    });
+
+                    this.navCtrl.push(PortfolioPage);
                 }
             }
             else {

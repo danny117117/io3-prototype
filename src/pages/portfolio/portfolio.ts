@@ -26,12 +26,20 @@ export class PortfolioPage {
 
         this.storage.get("userInfo1").then((data) => {
             this.user = data;
-            this.authenticateprovider.Authenticate(data).subscribe((data) => {
+            if(data!=null) {
+                this.authenticateprovider.Authenticate(data).subscribe((data) => {
+                    this.Get_Portfolio();
+                }, (err) => {
+                    this.Get_Portfolio();
+                })
+            }
+            else{
                 this.Get_Portfolio();
-            }, (err) => {
-                this.Get_Portfolio();
-            })
+            }
         });
+
+
+
     }
     Get_Portfolio() {
         const load = this.loadCtrl.create({});
