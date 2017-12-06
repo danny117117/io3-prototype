@@ -2,13 +2,13 @@ import {Inject, Injectable} from '@angular/core';
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {
-    User,
     Params_Authenticate,
-    SerializationHelper,
-} from '../../models/models';
+} from '../models/login.models';
+import {User} from '../models/user.models'
+import {SerializationHelper} from "../models/serializationHelper.models"
 import {Observable} from "rxjs/Observable";
-import {CommonServiceProvider} from "../common-service/common-service";
-import {APP_CONFIG, AppConfig} from "../../config/configs";
+import {CommonServiceProvider} from "./common-service";
+import {APP_CONFIG, AppConfig} from "../config/configs";
 
 @Injectable()
 export class AuthenticateProvider {

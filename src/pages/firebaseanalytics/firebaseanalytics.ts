@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Firebase} from "@ionic-native/firebase";
 import {Platform} from "ionic-angular";
-import {FirebaseProvider} from "../../providers/firebase/firebase";
+import {FirebaseProvider} from "../../providers/firebase";
 
 
 @Component({

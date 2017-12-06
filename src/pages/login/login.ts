@@ -1,25 +1,25 @@
 import {Component} from '@angular/core';
 import {NavController, Platform, ActionSheetController, AlertController} from 'ionic-angular';
-import {Params_Authenticate} from '../../models/models';
-import {DataServiceProvider} from '../../providers/data-service/data-service';
+import {DataServiceProvider} from '../../providers/data-service';
 import {basePage} from '../../models/basePage';
 import {RegisterPage} from '../register/register';
-import {CommonServiceProvider} from '../../providers/common-service/common-service';
+import {CommonServiceProvider} from '../../providers/common-service';
 import {Toast} from '@ionic-native/toast';
 import {TranslateService} from "@ngx-translate/core";
 import {Storage} from '@ionic/storage';
 import {Keyboard} from "@ionic-native/keyboard";
 import {FirebaseanalyticsPage} from "../firebaseanalytics/firebaseanalytics";
 import {Firebase} from "@ionic-native/firebase";
-import {FirebaseProvider} from "../../providers/firebase/firebase";
+import {FirebaseProvider} from "../../providers/firebase";
 import {PortfolioPage} from "../portfolio/portfolio";
-import {AuthenticateProvider} from "../../providers/authenticate/authenticate.providers";
+import {AuthenticateProvider} from "../../providers/authenticate.providers";
 import {ForgetpasswordPage} from "../forgetpassword/forgetpassword";
 import * as _ from 'lodash';
+import {Params_Authenticate} from "../../models/login.models";
 
 @Component({
     selector: 'page-home',
-    templateUrl: 'home.html'
+    templateUrl: 'login.html'
 })
 export class HomePage extends basePage {
     language: string;
@@ -76,14 +76,12 @@ export class HomePage extends basePage {
             });
         });
     }
-
     onForgetPassword() {
         this.navCtrl.push(ForgetpasswordPage
         )
     }
-
     Authenticate() {
-        this.user = this.firebaseprovider.login(this.data.USER_NAME, this.data.PASSWORD);
+       // this.user = this.firebaseprovider.login(this.data.USER_NAME, this.data.PASSWORD);
         this.Processing = true;
         this.authenticateprovider.Authenticate(this.data).subscribe((result) => {
             this.Processing = false;
@@ -104,9 +102,7 @@ export class HomePage extends basePage {
             }
         });
     }
-
     ProceedToRegister() {
-        //  this.navCtrl.push(RegisterPage);
         const alert = this.alertCtrl.create({
             message: 'Do You Have Policy?',
             buttons: [
@@ -123,7 +119,7 @@ export class HomePage extends basePage {
                     }
                 }
             ]
-        })
+        });
         alert.present();
     }
 

@@ -1,19 +1,20 @@
 import {Injectable, Inject} from '@angular/core';
 import 'rxjs/add/operator/map';
-import {CommonServiceProvider} from '../common-service/common-service';
+import {CommonServiceProvider} from './common-service';
 import {
-    SerializationHelper,
-    Params_GetSignup,
-    Codes,
-    Polcom,
-    Params_Acquire_PNS_Token
-} from '../../models/models';
+    Polcom
+} from '../models/polcom.models';
+import {  Codes} from '../models/codes.models'
+import { Params_GetSignup} from '../models/Params_GetSignup.models'
+
+import {Params_Acquire_PNS_Token} from '../models/Params_Acquire_PNS_Token.models'
+import {SerializationHelper} from "../models/serializationHelper.models";
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import {APP_CONFIG, AppConfig} from "../../config/configs";
+import {APP_CONFIG, AppConfig} from "../config/configs";
 
 @Injectable()
 export class DataServiceProvider {
@@ -43,7 +44,6 @@ export class DataServiceProvider {
             }).catch(this.handleErrorPromise);
     }
 
-
     GetSignup(Params: Params_GetSignup): Observable<Codes[]> {
         this.url = this.API + '/GetSignup';
         const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
@@ -57,7 +57,6 @@ export class DataServiceProvider {
             })
             .catch(this.handleErrorPromise);
     }
-
 
     Get_Portfolio(): Observable<Polcom[]> {
         this.url = this.API + '/Get_Portfolio';
@@ -83,8 +82,6 @@ export class DataServiceProvider {
             }).catch(this.handleErrorPromise);
     }
 
-
-
     registerInfo(data) {
         this.url1 = this.Nodeapi + 'registerInfo';
         const headers = new Headers({'Content-Type': 'application/json', 'SESSION_ID': this.common.SESSION_ID});
@@ -93,42 +90,6 @@ export class DataServiceProvider {
             return res.json();
         })
     }
-
-
-    RegisterWithPolicy(info) {
-        this.url1 = this.Nodeapi + 'registerwithpolicy';
-        const headers = new Headers({
-            'content-type': 'application/x-www-form-urlencoded', 'SESSION_ID': this.common.SESSION_ID
-        });
-        const options = new RequestOptions({
-            headers: headers
-        });
-        let data="registerwithpolicynumber="+info;
-        return this.http.post(this.url1, data, options).map((res: Response) => {
-            return res.json();
-        })
-    }
-
-
-    ForgetPassword(question) {
-        this.url1 = this.Nodeapi + 'forgetpassword';
-        const headers = new Headers({
-            'content-type': 'application/x-www-form-urlencoded', 'SESSION_ID': this.common.SESSION_ID
-        });
-        const options = new RequestOptions({
-            headers: headers
-        });
-        let data="question="+question;
-        return this.http.post(this.url1, data, options).map((res: Response) => {
-            return res.json();
-        })
-    }
-
-
-
-
-
-
 
     handleErrorPromise(error: Response | any) {
         //console.error(error.message || error);

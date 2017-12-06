@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {LoadingController, NavController, NavParams, PopoverController} from 'ionic-angular';
-import {DataServiceProvider} from '../../providers/data-service/data-service';
-import {Polcom} from '../../models/models';
+import {DataServiceProvider} from '../../providers/data-service';
+import {Polcom} from '../../models/polcom.models';
 import {Storage} from '@ionic/storage';
 import {LogoutPage} from "../logout/logout";
-import {AuthenticateProvider} from "../../providers/authenticate/authenticate.providers";
+import {AuthenticateProvider} from "../../providers/authenticate.providers";
 
 @Component({
     selector: 'page-portfolio',

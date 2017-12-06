@@ -1,36 +1,29 @@
 import {Component} from '@angular/core';
 import {AlertController, NavController, NavParams} from 'ionic-angular';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {DataServiceProvider} from "../../providers/data-service/data-service";
-
+import {FormGroup} from "@angular/forms";
+import {RegisterProvider} from "../../providers/register-provider";
 
 @Component({
     selector: 'page-registerwithpolicy',
     templateUrl: 'registerwithpolicy.html',
 })
 export class RegisterwithpolicyPage {
-
-
     registerwithpolicy: FormGroup;
     registerpolicynumber = "";
-
-
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
-                public formBuilder: FormBuilder,
-                public data: DataServiceProvider,
+                public register: RegisterProvider,
                 public alertCtrl: AlertController) {
     }
 
     onRegisterWithPolicy(form) {
         this.registerpolicynumber = form.value.registerpolicynumber;
-        this.data.RegisterWithPolicy(this.registerpolicynumber).subscribe((data) => {
-
+        this.register.RegisterWithPolicy(this.registerpolicynumber).subscribe((data) => {
             if (data.res == "validate") {
                 alert("Do Next");
             }
             else {
-             const load= this.alertCtrl.create({
+                const load = this.alertCtrl.create({
                     title: "Invalid Secret Number",
                     subTitle: "The Number You Enter Was Incorrect",
                     buttons: [
@@ -38,7 +31,7 @@ export class RegisterwithpolicyPage {
                             text: "OK"
                         }
                     ]
-                })
+                });
                 load.present();
             }
         }, (err) => {

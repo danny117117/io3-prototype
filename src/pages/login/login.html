@@ -21,11 +21,8 @@
                     <ion-label>remember me ?</ion-label>
                     <ion-checkbox [(ngModel)]="remember"></ion-checkbox>
                 </ion-item>
-
-
                 <a (click)="onForgetPassword()">{{ 'Forgotyourlogindetail' | translate }}<b> {{ 'Gethelpsigningin' | translate }}</b></a>
-                <button ion-button block outline color='light' (click)='Authenticate()' [disabled]="Processing">{{
-                    'login' | translate }}
+                <button ion-button block outline color='light' (click)='Authenticate()' [disabled]="Processing">{{'login' | translate }}
                 </button>
                 <p style="color:white">{{ 'or' | translate }}</p>
                 <button ion-button block color='facebook' (click)="onLogOut()">

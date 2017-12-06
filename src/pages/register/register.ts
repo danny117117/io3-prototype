@@ -1,16 +1,19 @@
 import {Component} from '@angular/core';
 import {AlertController, NavController, NavParams, Platform} from 'ionic-angular';
 import {DatePicker} from '@ionic-native/date-picker';
-import {RegisterInfo, Params_GetSignup, Codes} from '../../models/models';
+import {RegisterInfo} from '../../models/registerInfo.models';
+import {Codes} from '../../models/codes.models'
+import {Params_GetSignup} from '../../models/Params_GetSignup.models'
 import {DatePipe} from '@angular/common';
 import {basePage} from '../../models/basePage';
-import {DataServiceProvider} from '../../providers/data-service/data-service';
+import {DataServiceProvider} from '../../providers/data-service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Storage} from '@ionic/storage';
 import {TranslateService} from "@ngx-translate/core";
-import {CommonServiceProvider} from "../../providers/common-service/common-service";
+import {CommonServiceProvider} from "../../providers/common-service";
 import {Toast} from "@ionic-native/toast";
 import {RegisterwithpolicyPage} from "../registerwithpolicy/registerwithpolicy";
+import {Keyboard} from "@ionic-native/keyboard";
 
 @Component({
     selector: 'page-register',
@@ -33,8 +36,10 @@ export class RegisterPage extends basePage {
                 private common: CommonServiceProvider,
                 public dataservices: DataServiceProvider,
                 public alertCtrl: AlertController,
-                private toast: Toast) {
+                private toast: Toast,
+                Keyboard: Keyboard) {
         super();
+        Keyboard.disableScroll(true);
         this.registerInfo.WEB_USER_ID = "12341234";
         this.registerInfo.PRODUCT_CODE = "SHP";
         this.registerInfo.POLICY_NBR = "2634";
@@ -70,7 +75,6 @@ export class RegisterPage extends basePage {
 
     onEmailValueChanged(value: any) {
         let phoneNumberControl = this.register.get('MOBILE');
-
         // Using setValidators to add and remove validators. No better support for adding and removing validators to controller atm.
         // See issue: https://github.com/angular/angular/issues/10567
         if (!value) {
