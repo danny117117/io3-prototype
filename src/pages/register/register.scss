@@ -56,10 +56,11 @@ page-register {
   }
   ion-item .ng-invalid {
     border: solid 1px red ;
-    border-right: none;
+
   }
   ion-item .valid {
     border: none ;
+    margin-left: 100px;
   }
   ion-item .ng-untouched {
     border: none ;
