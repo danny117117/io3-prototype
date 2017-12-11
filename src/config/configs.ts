@@ -9,7 +9,7 @@ export const rony: AppConfig = {
 };
 export const danny: AppConfig = {
     apiAddress: 'http://192.168.12.74/WebAPIProtoType/Api/Polcom',
-    apiNode: 'http://192.168.12.155:8080/'
+    apiNode: 'http://192.168.12.121:8080/'
 
 };
 

@@ -54,7 +54,7 @@ export class HomePage extends basePage {
         // this.data.USER_NAME = 'adib';
         //  this.data.PASSWORD = '454540@EVDQJJX';
         this.data.USER_NAME = 'amine';
-        this.data.PASSWORD = '243216@COHCKFX';
+        this.data.PASSWORD = '243216@VXPZBLU';
         this.api.DQNewSession().subscribe((data) => {
             this.common.SESSION_ID = data;
         });

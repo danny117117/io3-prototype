@@ -38,14 +38,14 @@ export function createTranslateLoader(http: Http) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-// export const firebaseConfig = {
-//     apiKey: "AIzaSyDPPNUCQHs602A0x26OtKXg0k-ofQok_3E",
-//     authDomain: "client-space-mobile.firebaseapp.com",
-//     databaseURL: "https://client-space-mobile.firebaseio.com",
-//     projectId: "client-space-mobile",
-//     storageBucket: "client-space-mobile.appspot.com",
-//     messagingSenderId: "947181869234"
-// };
+export const firebaseConfig = {
+    apiKey: "AIzaSyDPPNUCQHs602A0x26OtKXg0k-ofQok_3E",
+    authDomain: "client-space-mobile.firebaseapp.com",
+    databaseURL: "https://client-space-mobile.firebaseio.com",
+    projectId: "client-space-mobile",
+    storageBucket: "client-space-mobile.appspot.com",
+    messagingSenderId: "947181869234"
+};
 
 @NgModule({
     declarations: [
@@ -76,7 +76,7 @@ export function createTranslateLoader(http: Http) {
             scrollAssist: true,
             autoFocusAssist: false
         }),
-        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireModule.initializeApp(firebaseConfig),
         AngularFireDatabaseModule,
         AngularFireAuthModule,
 
