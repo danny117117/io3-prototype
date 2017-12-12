@@ -29,10 +29,15 @@ export class FirebaseProvider {
                 public events: Events,
                 private storage: Storage,
                 public firebase: Firebase) {
+        //this is for the push Notifications only and only for ios without this the push wont work
+        this.firebase.grantPermission().then((data) => {
+            alert(data);
+        }).catch((err) => {
+            alert(err)
+        })
 
 
         this.notregisteredlist = afDB.list('/notregistered');
-
         this.authListener = this.firebaseAuth.authState.subscribe(user => {
             if (user) {
                 this.authListener.unsubscribe();
