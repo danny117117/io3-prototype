@@ -29,11 +29,15 @@ export class FirebaseProvider {
                 public events: Events,
                 private storage: Storage,
                 public firebase: Firebase) {
+
+
+
+
         //this is for the push Notifications only and only for ios without this the push wont work
         this.firebase.grantPermission().then((data) => {
             alert(data);
         }).catch((err) => {
-            alert(err)
+            alert("error-->"+err)
         })
 
 
